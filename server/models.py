@@ -40,3 +40,33 @@ class Seller(db.Model, SerializerMixin):
     
     def __repr__(self):
         return f'Seller {self.username}, ID: {self.id}'
+    
+
+class Piece(db.Model, SerializerMixin):
+    __tablename__ = 'pieces'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    description = db.Column(db.String)
+    image_url = db.Column(db.String)
+    price = db.Column(db.Integer, nullable=False)
+
+
+    @validates('name')
+    def validate_name(self, key, name):
+        if not name or not 0 < len(name) <= 30:
+            raise ValueError("Name must be 1-30 characters")
+        return name
+    
+    @validates('image_url')
+    def validate_image(self, key, image):
+        if len(image) < 1 or image == None:
+            return 'https://placehold.co/400'
+        return image
+    #maybe add the placeholder image as part of the front end
+
+    @validates('price')
+    def validate_price(self, key, price):
+        if price <= 0 or not type(price) == int:
+            raise ValueError("Price must be an integer greater than zero")
+        return price
