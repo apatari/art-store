@@ -20,6 +20,7 @@ class Seller(db.Model, SerializerMixin):
             raise ValueError("Name must be 1-20 characters")
         if name in [seller.username for seller in Seller.query.all()]:
             raise ValueError("Sorry, that name is not available")
+        return name
         
     @hybrid_property
     def password_hash(self):
