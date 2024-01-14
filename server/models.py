@@ -18,7 +18,8 @@ class Seller(db.Model, SerializerMixin):
     def validate_username(self, key, name):
         if not name or not 0 < len(name) <= 20:
             raise ValueError("Name must be 1-20 characters")
-        if name in [seller.username for seller in Seller.query.all()]:
+        # if name in [seller.username for seller in Seller.query.all()]:
+        if Seller.query.filter_by(username=name).first():
             raise ValueError("Sorry, that name is not available")
         return name
         
