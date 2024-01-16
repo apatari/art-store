@@ -44,11 +44,39 @@ class Logout(Resource):
             return {}, 200
         else:
             return{"errors": "Error: cannot log out, you are not logged in"}, 401
+        
+class PieceIndex(Resource):
+
+    def get(self):
+
+        pieces = [piece.to_dict() for piece in Piece.query.all()]
+
+        return pieces, 200
+    
+    def post(self):
+
+        json = request.get_json()
+
+        try:
+            new_piece = Piece(
+                name = json["name"],
+                description = json["description"],
+                image_url = json["image_url"],
+                price = json["price"]
+            )
+
+            db.session.add(new_piece)
+            db.session.commit()
+
+            return new_piece.to_dict(), 201
+        except Exception as err:
+            return {"errors": [str(err)]}, 422
 
 
 
 api.add_resource(Login, '/api/login')
 api.add_resource(Logout, '/api/logout')
+api.add_resource(PieceIndex, '/api/pieces')
 
 # @app.route('/')
 # def index():
