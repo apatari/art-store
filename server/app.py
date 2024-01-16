@@ -82,6 +82,28 @@ class PieceByID(Resource):
             return piece.to_dict(), 200
         else:
             return {"error": "Nordic center not found"}, 404
+        
+    def patch(self, id):
+
+        piece = Piece.query.get(id)
+        json = request.get_json()
+
+
+        if not piece:
+            return {"error": "Piece not found"}, 404
+        else:
+            try:
+                piece.name = json["name"]
+                piece.description = json["description"]
+                piece.image_url = json["image_url"]
+                piece.price = json["price"]
+
+                db.session.add(piece)
+                db.session.commit()
+
+                return piece.to_dict(), 201
+            except Exception as err:
+                return {"errors": [str(err)]}, 422
 
 
 api.add_resource(Login, '/api/login')

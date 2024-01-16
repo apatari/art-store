@@ -55,16 +55,17 @@ class Piece(db.Model, SerializerMixin):
 
     @validates('name')
     def validate_name(self, key, name):
-        if not name or not 0 < len(name) <= 30:
+        if not name or not type(name) == str or not 0 < len(name) <= 30:
             raise ValueError("Name must be 1-30 characters")
         return name
     
     @validates('image_url')
     def validate_image(self, key, image):
-        if len(image) < 1 or image == None:
+        if not type(image) == str or len(image) < 1 or image == None:
             return 'https://placehold.co/400'
         return image
     #maybe add the placeholder image as part of the front end
+    #use a link validator here
 
     @validates('price')
     def validate_price(self, key, price):
