@@ -72,11 +72,22 @@ class PieceIndex(Resource):
         except Exception as err:
             return {"errors": [str(err)]}, 422
 
+class PieceByID(Resource):
+
+    def get(self, id):
+
+        piece = Piece.query.get(id)
+
+        if piece:
+            return piece.to_dict(), 200
+        else:
+            return {"error": "Nordic center not found"}, 404
 
 
 api.add_resource(Login, '/api/login')
 api.add_resource(Logout, '/api/logout')
 api.add_resource(PieceIndex, '/api/pieces')
+api.add_resource(PieceByID, '/api/pieces/<int:id>')
 
 # @app.route('/')
 # def index():

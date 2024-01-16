@@ -68,6 +68,6 @@ class Piece(db.Model, SerializerMixin):
 
     @validates('price')
     def validate_price(self, key, price):
-        if price <= 0 or not type(price) == int:
+        if not type(price) == int or price <= 0:
             raise ValueError("Price must be an integer greater than zero")
         return price
