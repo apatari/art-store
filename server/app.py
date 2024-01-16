@@ -32,10 +32,23 @@ class Login(Resource):
             return response_body, 200
         else:
             return {"errors": ["Invalid username and/or password"]}, 401
+        
+class Logout(Resource):
+    
+    def delete(self):
+
+        user = Seller.query.filter_by(id = session.get('user_id')).first()
+
+        if user:
+            session["user_id"] = None
+            return {}, 200
+        else:
+            return{"errors": "Error: cannot log out, you are not logged in"}, 401
 
 
 
 api.add_resource(Login, '/api/login')
+api.add_resource(Logout, '/api/logout')
 
 # @app.route('/')
 # def index():
