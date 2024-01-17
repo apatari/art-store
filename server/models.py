@@ -2,6 +2,7 @@ from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.hybrid import hybrid_property
+import validators
 
 from config import db, bcrypt
 
@@ -61,11 +62,11 @@ class Piece(db.Model, SerializerMixin):
     
     @validates('image_url')
     def validate_image(self, key, image):
-        if not type(image) == str or len(image) < 1 or image == None:
-            return 'https://placehold.co/400'
-        return image
+        if validators.url(image):
+            return image
+        return 'https://placehold.co/400'
     #maybe add the placeholder image as part of the front end
-    #use a link validator here
+    
 
     @validates('price')
     def validate_price(self, key, price):
