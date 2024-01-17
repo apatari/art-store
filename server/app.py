@@ -105,6 +105,17 @@ class PieceByID(Resource):
             except Exception as err:
                 return {"errors": [str(err)]}, 422
 
+    def delete(self, id):
+
+        piece = Piece.query.get(id)
+
+        if piece:
+            db.session.delete(piece)
+            db.session.commit()
+
+            return {}, 204
+        else:
+            return {"error": "Piece not found"}, 404
 
 api.add_resource(Login, '/api/login')
 api.add_resource(Logout, '/api/logout')
