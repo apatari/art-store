@@ -4,7 +4,7 @@ import "./header.css"
 
 function Header() {
     return (
-        <Navbar expand="lg" className="bg-body-tertiary backg">
+        <Navbar expand="lg" className="  ">
             <Container>
                 <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

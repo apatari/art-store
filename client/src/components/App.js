@@ -5,9 +5,10 @@ import Header from "./Header";
 import Body from "./Body";
 
 
+
 function App() {
   return (
-    <div>
+    <div className="bg"  >
       <Header />
       <Body />
     </div>
