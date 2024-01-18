@@ -6,12 +6,13 @@ function Header() {
     return (
         <Navbar expand="lg" className="  ">
             <Container>
-                <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+                <Navbar.Brand href="#home" className="fs-2 text-secondary" style={{fontFamily: "revert" }} >Art - Mary Lou Patari</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="me-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#link">Link</Nav.Link>
+                <Nav className="ms-auto me-5 fs-4">
+                    <Nav.Link href="#home" className="mx-2" >Weavings</Nav.Link>
+                    <Nav.Link href="#link" className="mx-2" >About</Nav.Link>
+                    <Nav.Link href="#seller" className="mx-2" >Seller</Nav.Link>
                     
                 </Nav>
                 </Navbar.Collapse>
