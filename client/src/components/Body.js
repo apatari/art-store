@@ -3,7 +3,7 @@ import React from "react";
 function Body() {
     return (
         <div>
-            Body
+            Start with sold carousel, cards below that
         </div>
     )
 }
