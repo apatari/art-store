@@ -11,14 +11,14 @@ function Header() {
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                <Form inline className="mx-auto" >
+                {/* <Form className="mx-auto" >
                     <Row>
-                    <div class="input-group m-3">
-                        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2"/>
-                        <button class="btn btn-secondary" type="button" id="button-addon2">Search</button>
+                    <div clasNames="input-group m-3">
+                        <input type="text" className="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2"/>
+                        <button className="btn btn-secondary" type="button" id="button-addon2">Search</button>
                     </div>
                     </Row>
-                </Form>
+                </Form> */}
                 <Nav className="ms-auto fs-4">
                     <Nav.Link href="#home" className="mx-2" >Weavings</Nav.Link>
                     <Nav.Link href="#link" className="mx-2" >About</Nav.Link>

@@ -1,9 +1,15 @@
 import React from "react";
+import PieceCard from "./PieceCard";
 
-function PieceList() {
+function PieceList({ pieces }) {
     return (
         <div className="my-3 mx-5 d-flex flex-wrap" >
-            Pieces here
+
+            {pieces.map((piece) => {
+                return <PieceCard piece={piece} key={piece.id} />
+                
+            })}
+        pieces here
         </div>
     )
 }
