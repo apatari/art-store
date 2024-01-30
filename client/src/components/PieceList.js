@@ -9,7 +9,7 @@ function PieceList({ pieces }) {
                 return <PieceCard piece={piece} key={piece.id} />
                 
             })}
-        pieces here
+        
         </div>
     )
 }

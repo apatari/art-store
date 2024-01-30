@@ -15,7 +15,7 @@ function Body() {
 
     return (
         <div>
-            Start with sold carousel, cards below that
+            
             <PieceList pieces={pieces}/>
         </div>
     )
