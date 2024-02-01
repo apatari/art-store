@@ -1,5 +1,6 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 function Footer() {
     return (
@@ -26,7 +27,7 @@ function Footer() {
                       
                 </Row>
                 <Row>
-                    Seller login
+                    Seller 
                 </Row>
             </Col>
             

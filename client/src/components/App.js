@@ -5,6 +5,7 @@ import "bootswatch/dist/cosmo/bootstrap.min.css";
 import Header from "./Header";
 import Body from "./Body";
 import Footer from "./Footer";
+import About from "./About";
 
 
 
@@ -12,7 +13,19 @@ function App() {
   return (
     <div className="bg"  >
       <Header />
-      <Body />
+      <Switch>
+
+        <Route exact path="/">
+          <Body />
+        </Route>
+
+        <Route exact path="/about">
+          <About />
+        </Route>
+
+      </Switch>
+
+      
       <Footer />
     </div>
   )
