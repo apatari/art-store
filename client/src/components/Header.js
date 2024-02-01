@@ -19,7 +19,7 @@ function Header() {
                     </div>
                     </Row>
                 </Form> */}
-                <Nav className="ms-auto fs-4">
+                <Nav className="ms-auto fs-3">
                     <Nav.Link href="#home" className="mx-2" >Weavings</Nav.Link>
                     <Nav.Link href="#link" className="mx-2" >About</Nav.Link>
                     <Nav.Link href="#seller" className="mx-2" >Contact</Nav.Link>

@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import "bootswatch/dist/cosmo/bootstrap.min.css";
 import Header from "./Header";
 import Body from "./Body";
+import Footer from "./Footer";
 
 
 
@@ -12,6 +13,7 @@ function App() {
     <div className="bg"  >
       <Header />
       <Body />
+      <Footer />
     </div>
   )
 }
