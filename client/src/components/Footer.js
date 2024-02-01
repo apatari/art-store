@@ -17,8 +17,13 @@ function Footer() {
                 <Row>
                     Website by Andy Patari
                 </Row>
-                <Row>
-                    <a href="https://github.com/apatari" target="blank">Github</a> <a href="https://www.linkedin.com/in/andrew-patari/" target="blank">Linkedin</a> 
+                <Row style={{display: "inline"}} >
+
+                        <a href="https://github.com/apatari" target="blank">Github</a>
+                   
+                        <a href="https://www.linkedin.com/in/andrew-patari/" target="blank">Linkedin</a>
+                    
+                      
                 </Row>
                 <Row>
                     Seller login
