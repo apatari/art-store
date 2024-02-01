@@ -20,9 +20,9 @@ function Header() {
                     </Row>
                 </Form> */}
                 <Nav className="ms-auto fs-3">
-                    <Nav.Link href="#home" className="mx-2" >Weavings</Nav.Link>
-                    <Nav.Link href="#link" className="mx-2" >About</Nav.Link>
-                    <Nav.Link href="#seller" className="mx-2" >Contact</Nav.Link>
+                    <Nav.Link href="/" className="mx-2" >Weavings</Nav.Link>
+                    <Nav.Link href="about" className="mx-2" >About</Nav.Link>
+                    <Nav.Link href="contact" className="mx-2" >Contact</Nav.Link>
                     
                 </Nav>
                 </Navbar.Collapse>

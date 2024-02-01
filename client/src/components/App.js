@@ -6,6 +6,7 @@ import Header from "./Header";
 import Body from "./Body";
 import Footer from "./Footer";
 import About from "./About";
+import Contact from "./Contact";
 
 
 
@@ -21,6 +22,10 @@ function App() {
 
         <Route exact path="/about">
           <About />
+        </Route>
+
+        <Route exact path="/contact">
+          <Contact />
         </Route>
 
       </Switch>
