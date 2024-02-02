@@ -68,6 +68,13 @@ function Login({ setUser }) {
                         value={formik.values.password}
                         onChange={formik.handleChange} />
                 </Form.Group>
+
+                {errors.map((err) => (
+                    <p className="text-danger m-3" key={err}>{err}</p>
+                ))}
+
+                <p className="text-danger m-3"> {formik.errors.username}</p>
+                <p className="text-danger m-3"> {formik.errors.password}</p>
                 
                 <Button variant="primary" type="submit">
                     Submit
