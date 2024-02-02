@@ -116,11 +116,28 @@ class PieceByID(Resource):
             return {}, 204
         else:
             return {"error": "Piece not found"}, 404
+        
+class CheckSession(Resource):
+
+    def get(self):
+
+        user = Seller.query.filter_by(id = session.get('user_id')).first()
+
+        if user:
+            response_body = {
+                "id": user.id,
+                "username": user.username,
+            }
+            return response_body, 200
+        else:
+            return {"errors": "User not logged in"}, 401
+
 
 api.add_resource(Login, '/api/login')
 api.add_resource(Logout, '/api/logout')
 api.add_resource(PieceIndex, '/api/pieces')
 api.add_resource(PieceByID, '/api/pieces/<int:id>')
+api.add_resource(CheckSession, '/api/check_session')
 
 # @app.route('/')
 # def index():
