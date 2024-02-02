@@ -7,6 +7,7 @@ import Body from "./Body";
 import Footer from "./Footer";
 import About from "./About";
 import Contact from "./Contact";
+import Seller from "./Seller";
 
 
 
@@ -26,6 +27,10 @@ function App() {
 
         <Route exact path="/contact">
           <Contact />
+        </Route>
+
+        <Route exact path="/seller">
+          <Seller />
         </Route>
 
       </Switch>
