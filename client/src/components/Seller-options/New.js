@@ -2,8 +2,11 @@ import React from "react";
 import { Form, Row, Col, Button } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as yup from "yup"
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function New() {
+
+    const history = useHistory()
 
     const formSchema = yup.object().shape({
         name: yup.string()
@@ -52,6 +55,7 @@ function New() {
                                 onChange={formik.handleChange}
                             />
                         </Form.Group>
+                        <p className="text-danger m-3"> {formik.errors.name}</p>
                     </Col>
 
                     <Col md={3}>
@@ -68,6 +72,7 @@ function New() {
                                 onChange={formik.handleChange}
                             />
                         </Form.Group>
+                        <p className="text-danger m-3"> {formik.errors.price}</p>
                     </Col>
 
                 </Row>
@@ -84,6 +89,7 @@ function New() {
                         onChange={formik.handleChange}
                     />
                 </Form.Group>
+                <p className="text-danger m-3"> {formik.errors.description}</p>
 
                 <Form.Group className="mb-3" >
                             <Form.Label>Image URL</Form.Label>
@@ -96,6 +102,7 @@ function New() {
                                 onChange={formik.handleChange}
                             />
                         </Form.Group>
+                        <p className="text-danger m-3"> {formik.errors.image_url}</p>
                 <Button type="submit" >Submit</Button>
             </Form>
 
