@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Row, Col, Button } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as yup from "yup"
@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 function New() {
 
     const history = useHistory()
+    const [errors, setErrors] = useState([])
 
     const formSchema = yup.object().shape({
         name: yup.string()
@@ -33,7 +34,23 @@ function New() {
         validationSchema: formSchema,
         validateOnChange: false,
         validateOnBlur: false,
-        onSubmit: (values) => {console.log(values)}
+        onSubmit: (values) => {
+            console.log(values)
+            fetch('/api/pieces', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(values)
+            })
+            .then(r => {
+                if (r.status === 201) {
+                    history.push('/')
+                } else {
+                    r.json().then(err => setErrors(err.errors))
+                }
+            })
+        }
     })
 
 
@@ -103,6 +120,7 @@ function New() {
                             />
                         </Form.Group>
                         <p className="text-danger m-3"> {formik.errors.image_url}</p>
+                        {errors.map((err) => <p className="text-danger m-3" key={err}>{err}</p>)}
                 <Button type="submit" >Submit</Button>
             </Form>
 

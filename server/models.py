@@ -64,7 +64,7 @@ class Piece(db.Model, SerializerMixin):
     def validate_image(self, key, image):
         if validators.url(image):
             return image
-        return 'https://placehold.co/400'
+        return 'https://placehold.co/400x500'
     #maybe add the placeholder image as part of the front end
     
 
