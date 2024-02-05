@@ -12,6 +12,15 @@ function Seller() {
     const history = useHistory()
     const [mode, setMode] = useState("new")
 
+    const [pieces, setPieces] = useState([])
+
+    useEffect(() => {
+        fetch('/api/pieces')
+        .then(res => res.json())
+        .then(data => setPieces(data)
+            )
+    }, [])
+
     function handleLogoutClick() {
         fetch('/api/logout', {
             method: "DELETE"
@@ -44,6 +53,8 @@ function Seller() {
         setMode("delete")
     }
 
+    
+
     return (
         <div className="m-3" >
             <Button onClick={handleLogoutClick} >Logout</Button>
@@ -57,7 +68,7 @@ function Seller() {
         <Col className="m-3 p-3 bg-light rounded" lg={8} >
             {(mode === "new")? <New/> : ""}
             {(mode === "edit")? <Edit/> : ""}
-            {(mode === "delete")? <Delete/> : ""}
+            {(mode === "delete")? <Delete pieces={pieces} /> : ""}
         </Col>
         
 

@@ -1,9 +1,11 @@
 import React from "react";
 
 
-function Delete() {
+function Delete({ pieces }) {
     return (
-        <div>Del</div>
+        <div>
+            {pieces.map(piece => <p key={piece.id} >{piece.name}</p>)}
+        </div>
     )
 }
 
