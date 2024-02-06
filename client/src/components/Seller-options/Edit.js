@@ -34,19 +34,20 @@ function Edit({ pieces }) {
 
     const formik = useFormik({
         initialValues: {
-            name: "",
-            price: 0,
-            description: "",
-            image_url: ""
+            name: editPiece.name,
+            price: editPiece.price,
+            description: editPiece.description,
+            image_url: editPiece.image_url
 
         },
         validationSchema: formSchema,
         validateOnChange: false,
         validateOnBlur: false,
+        enableReinitialize: true,
         onSubmit: (values) => {
             console.log(values)
-            fetch('/api/pieces', {
-                method: "POST",
+            fetch(`/api/pieces/${editPiece.id}`, {
+                method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
                 },
