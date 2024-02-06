@@ -67,7 +67,7 @@ function Seller() {
         
         <Col className="m-3 p-3 bg-light rounded" lg={8} >
             {(mode === "new")? <New/> : ""}
-            {(mode === "edit")? <Edit/> : ""}
+            {(mode === "edit")? <Edit pieces={pieces}/> : ""}
             {(mode === "delete")? <Delete pieces={pieces} /> : ""}
         </Col>
         
