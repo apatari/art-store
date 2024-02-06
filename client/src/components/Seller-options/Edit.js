@@ -144,7 +144,8 @@ function Edit({ pieces }) {
                         </Form.Group>
                         <p className="text-danger m-3"> {formik.errors.image_url}</p>
                         {errors.map((err) => <p className="text-danger m-3" key={err}>{err}</p>)}
-                <Button type="submit" >Submit Edits</Button>
+                {(editPiece.id === -1)? <Button disabled> Submit Edits </Button> : <Button type="submit" >Submit Edits</Button>}
+                
             </Form>
 
         </div>
