@@ -35,7 +35,7 @@ function New() {
         validateOnChange: false,
         validateOnBlur: false,
         onSubmit: (values) => {
-            console.log(values)
+            
             fetch('/api/pieces', {
                 method: "POST",
                 headers: {

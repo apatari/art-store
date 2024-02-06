@@ -44,7 +44,7 @@ function DeleteButton({ piece }) {
                 <Button className="btn me-auto" onClick={handleClose}>
                     Cancel
                 </Button>
-                <Button className="btn-info " onClick={handleDeleteConfirm}>
+                <Button className="btn-warning " onClick={handleDeleteConfirm}>
                     Delete it
                 </Button>
                 </Modal.Footer>

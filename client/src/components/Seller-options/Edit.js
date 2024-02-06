@@ -45,7 +45,7 @@ function Edit({ pieces }) {
         validateOnBlur: false,
         enableReinitialize: true,
         onSubmit: (values) => {
-            console.log(values)
+            
             fetch(`/api/pieces/${editPiece.id}`, {
                 method: "PATCH",
                 headers: {
