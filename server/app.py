@@ -3,7 +3,7 @@
 # Standard library imports
 
 # Remote library imports
-from flask import request, session
+from flask import request, session, send_file
 from flask_restful import Resource
 
 # Local imports
@@ -137,8 +137,14 @@ class UploadFile(Resource):
     def post(self):
         upload = request.files['file']
         if upload.filename != "":
-            upload.save(upload.filename)
+            upload.save(f'./static/{upload.filename}')
         return {"filename": upload.filename}, 201
+
+class Image(Resource):
+
+    def get(self, name):
+        return send_file(f'./static/{name}')
+        
 
 
 api.add_resource(Login, '/api/login')
@@ -147,6 +153,7 @@ api.add_resource(PieceIndex, '/api/pieces')
 api.add_resource(PieceByID, '/api/pieces/<int:id>')
 api.add_resource(CheckSession, '/api/check_session')
 api.add_resource(UploadFile, '/api/upload')
+api.add_resource(Image, "/api/images/<string:name>")
 
 # @app.route('/')
 # def index():
