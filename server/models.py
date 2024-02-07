@@ -60,12 +60,17 @@ class Piece(db.Model, SerializerMixin):
             raise ValueError("Name must be 1-30 characters")
         return name
     
-    @validates('image_url')
-    def validate_image(self, key, image):
-        if validators.url(image):
-            return image
-        return 'https://placehold.co/400x500'
-    #maybe add the placeholder image as part of the front end
+    #turned off validation for now, it wasn't working with my simple image serving,
+    #Plus might be redundant with the url handled independently
+
+    # @validates('image_url')
+    # def validate_image(self, key, image):
+    #     if validators.url(image):
+    #         return image
+    #     return 'https://placehold.co/400x500'
+
+    
+    # #maybe add the placeholder image as part of the front end
     
 
     @validates('price')

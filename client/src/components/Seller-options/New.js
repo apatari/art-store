@@ -127,29 +127,39 @@ function New() {
                 </Form.Group>
                 <p className="text-danger m-3"> {formik.errors.description}</p>
 
-                <Form.Group className="mb-3" >
-                            <Form.Label>Image URL</Form.Label>
-                            <Form.Control  
-                                placeholder="Paste image address here"
-                                
-                                name="image_url"
-                                id="image_url"
-                                value={formik.values.image_url}
-                                onChange={formik.handleChange}
-                            />
-                        </Form.Group>
-                        <p className="text-danger m-3"> {formik.errors.image_url}</p>
-                        {errors.map((err) => <p className="text-danger m-3" key={err}>{err}</p>)}
-                <Button type="submit" >Submit</Button>
+                {/* <Form.Group className="mb-3" >
+                    <Form.Label>Image URL</Form.Label>
+                    <Form.Control  
+                        placeholder="Paste image address here"
+                        
+                        name="image_url"
+                        id="image_url"
+                        value={formik.values.image_url}
+                        onChange={formik.handleChange}
+                    />
+                </Form.Group> */}
+
+                <Form.Group  className="mb-3">
+                    <Form.Label>Select Image File</Form.Label>
+                    <Form.Control type="file" onChange={(e) => {setFile(e.target.files[0])}} />
+                    <Button onClick={handleUpload} >Upload</Button>
+                </Form.Group>
+
+
+                <p className="text-danger m-3"> {formik.errors.image_url}</p>
+                {errors.map((err) => <p className="text-danger m-3" key={err}>{err}</p>)}
+
+                {(file)? <Button type="submit" >Submit</Button>:<Button type="submit" disabled >Submit</Button> }
+                
             </Form>
 
-            <Form className="my-3" >
+            {/* <Form className="my-3" >
                 <p>Select image file:</p>
 
                 <input id="files" type="file" onChange={(e) => {setFile(e.target.files[0])}} />
 
                 <Button onClick={handleUpload} >Upload</Button>
-            </Form>
+            </Form> */}
             
 
         </div>
