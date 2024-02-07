@@ -19,9 +19,7 @@ function New() {
             .positive("Price muse be greater than zero")
             .integer("Price must be an integer")
             .required("Please enter a price"),
-        description: yup.string().required("Please enter a description"),
-        image_url: yup.string()
-            .required("Please provide an image url")
+        description: yup.string().required("Please enter a description")
         
     })
 
@@ -29,50 +27,57 @@ function New() {
         initialValues: {
             name: "",
             price: 0,
-            description: "",
-            image_url: ""
+            description: ""
 
         },
         validationSchema: formSchema,
         validateOnChange: false,
         validateOnBlur: false,
         onSubmit: (values) => {
-            
-            fetch('/api/pieces', {
+
+            const fd = new FormData()
+            fd.append('file', file)
+
+            // axios.post('/api/upload', fd, {
+            //     headers: {
+            //         "Custom-Header": "value"
+            //     }
+            // })
+            fetch('/api/upload', {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(values)
+                body: fd
             })
-            .then(r => {
-                if (r.status === 201) {
-                    history.push('/')
+
+            .then(res => {
+                if (res.ok) {
+                    res.json()
+                    .then(res => {
+
+                        const image_url = res.filename
+
+                        fetch('/api/pieces', {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({...values, "image_url": '/api/images/' + image_url})
+                        })
+                        .then(r => {
+                            if (r.status === 201) {
+                                history.push('/')
+                            } else {
+                                r.json().then(err => setErrors(err.errors))
+                            }
+                        })
+                    })
+                    
                 } else {
-                    r.json().then(err => setErrors(err.errors))
+                    res.json().then(err => setErrors(err.errors))
                 }
             })
         }
     })
 
-    const handleUpload = () => {
-        if (!file) {
-            console.log("No file selected")
-            return
-        }
-
-        const fd = new FormData()
-        fd.append('file', file)
-
-        axios.post('/api/upload', fd, {
-            headers: {
-                "Custom-Header": "value"
-            }
-        })
-        .then(res => console.log(res.data))
-        .catch(err => console.error(err))
-
-    }
 
     return (
         <div>
@@ -142,7 +147,7 @@ function New() {
                 <Form.Group  className="mb-3">
                     <Form.Label>Select Image File</Form.Label>
                     <Form.Control type="file" onChange={(e) => {setFile(e.target.files[0])}} />
-                    {/* <Button onClick={handleUpload} >Upload</Button> */}
+                    
                 </Form.Group>
 
 

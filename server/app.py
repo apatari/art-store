@@ -81,7 +81,7 @@ class PieceByID(Resource):
         if piece:
             return piece.to_dict(), 200
         else:
-            return {"error": "Nordic center not found"}, 404
+            return {"error": "Piece not found"}, 404
         
     def patch(self, id):
 
@@ -137,8 +137,14 @@ class UploadFile(Resource):
     def post(self):
         upload = request.files['file']
         if upload.filename != "":
-            upload.save(f'./static/{upload.filename}')
-        return {"filename": upload.filename}, 201
+            try:
+                upload.save(f'./static/{upload.filename}')
+                return {"filename": upload.filename}, 201
+            except Exception as err:
+                return {"errors": [str(err)]}, 422
+        return {"errors": ["missing filename"]}, 422
+            
+        
 
 class Image(Resource):
 
