@@ -3,11 +3,13 @@ import { Form, Row, Col, Button } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as yup from "yup"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import axios from "axios"
 
 function New() {
 
     const history = useHistory()
     const [errors, setErrors] = useState([])
+    const [file, setFile] = useState(null)
 
     const formSchema = yup.object().shape({
         name: yup.string()
@@ -53,7 +55,24 @@ function New() {
         }
     })
 
+    const handleUpload = () => {
+        if (!file) {
+            console.log("No file selected")
+            return
+        }
 
+        const fd = new FormDate()
+        fd.append('file', file)
+
+        axios.post('/api/upload', fd, {
+            headers: {
+                "Custom-Header": "value"
+            }
+        })
+        .then(res => console.log(res.data))
+        .catch(err => console.error(err))
+
+    }
 
     return (
         <div>
@@ -122,6 +141,14 @@ function New() {
                         <p className="text-danger m-3"> {formik.errors.image_url}</p>
                         {errors.map((err) => <p className="text-danger m-3" key={err}>{err}</p>)}
                 <Button type="submit" >Submit</Button>
+            </Form>
+
+            <Form className="my-3" >
+                <p>Select image file:</p>
+
+                <input id="files" type="file" onChange={(e) => {setFile(e.target.files[0])}} />
+
+                <Button onClick={handleUpload} >Upload</Button>
             </Form>
 
         </div>
