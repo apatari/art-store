@@ -38,11 +38,6 @@ function New() {
             const fd = new FormData()
             fd.append('file', file)
 
-            // axios.post('/api/upload', fd, {
-            //     headers: {
-            //         "Custom-Header": "value"
-            //     }
-            // })
             fetch('/api/upload', {
                 method: "POST",
                 body: fd
@@ -132,18 +127,7 @@ function New() {
                 </Form.Group>
                 <p className="text-danger m-3"> {formik.errors.description}</p>
 
-                {/* <Form.Group className="mb-3" >
-                    <Form.Label>Image URL</Form.Label>
-                    <Form.Control  
-                        placeholder="Paste image address here"
-                        
-                        name="image_url"
-                        id="image_url"
-                        value={formik.values.image_url}
-                        onChange={formik.handleChange}
-                    />
-                </Form.Group> */}
-
+             
                 <Form.Group  className="mb-3">
                     <Form.Label>Select Image File</Form.Label>
                     <Form.Control type="file" onChange={(e) => {setFile(e.target.files[0])}} />
@@ -158,15 +142,7 @@ function New() {
                 
             </Form>
 
-            {/* <Form className="my-3" >
-                <p>Select image file:</p>
-
-                <input id="files" type="file" onChange={(e) => {setFile(e.target.files[0])}} />
-
-                <Button onClick={handleUpload} >Upload</Button>
-            </Form> */}
-            
-
+        
         </div>
     )
 }
