@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 # Standard library imports
+import os
 
 # Remote library imports
 from flask import request, session, send_file
@@ -110,6 +111,7 @@ class PieceByID(Resource):
         piece = Piece.query.get(id)
 
         if piece:
+            os.remove("./static/" + piece.image_url)
             db.session.delete(piece)
             db.session.commit()
 

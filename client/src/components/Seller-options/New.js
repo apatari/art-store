@@ -60,7 +60,7 @@ function New() {
                             headers: {
                                 "Content-Type": "application/json",
                             },
-                            body: JSON.stringify({...values, "image_url": '/api/images/' + image_url})
+                            body: JSON.stringify({...values, "image_url": image_url})
                         })
                         .then(r => {
                             if (r.status === 201) {
