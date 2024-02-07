@@ -61,7 +61,7 @@ function New() {
             return
         }
 
-        const fd = new FormDate()
+        const fd = new FormData()
         fd.append('file', file)
 
         axios.post('/api/upload', fd, {
