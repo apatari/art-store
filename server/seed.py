@@ -36,10 +36,10 @@ if __name__ == '__main__':
         db.session.commit()
 
         pieces = [
-            Piece(name="Tan Expressions", description="Medium-sized, with warm wheat tones.  Like pancakes for breakfast with Cheerios on the side.", image_url="https://i.imgur.com/zk0xUgx.jpeg", price=25),
-            Piece(name="Cochabamba Suburb", description="My church bell brings all the alpacas to  the yard.  A village scene withful custom frame.", image_url="https://i.imgur.com/IfznIXo.jpeg", price=20),
-            Piece(name="Xelaju Morning", description="Medium small with full bright wood frame.  Reminds me of a bike repair shop on the Panamerican highway run by a foul-mouthed teenager.", image_url="https://i.imgur.com/lupVo3d.jpg", price=10),
-            Piece(name="Mountain Maple Skyline", description="Small, supported by a local Vermont stick expertly cut by ML's son.  You get to decide if that's a faraway peak or the setting sun if you purchase the piece.", image_url="https://i.imgur.com/TP8MjGP.jpeg", price=45), 
+            Piece(name="Tan Expressions", description="Medium-sized, with warm wheat tones.  Like pancakes for breakfast with Cheerios on the side.", image_url="IMG_7383.jpg", price=25),
+            Piece(name="Cochabamba Suburb", description="My church bell brings all the alpacas to  the yard.  A village scene withful custom frame.", image_url="IMG_7400.jpg", price=20),
+            Piece(name="Xelaju Morning", description="Medium small with full bright wood frame.  Reminds me of a bike repair shop on the Panamerican highway run by a foul-mouthed teenager.", image_url="IMG_7401.jpg", price=10),
+            Piece(name="Mountain Maple Skyline", description="Small, supported by a local Vermont stick expertly cut by ML's son.  You get to decide if that's a faraway peak or the setting sun if you purchase the piece.", image_url="IMG_7218.jpg", price=45), 
         ]
 
         for piece in pieces:

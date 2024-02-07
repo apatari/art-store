@@ -12,6 +12,7 @@ from config import app, db, api
 # Add your model imports
 from models import Seller, Piece
 
+ALLOWED_EXTENSIONS = {'png', 'jpg', "jpeg"}
 
 
 # Views go here!
@@ -138,6 +139,10 @@ class UploadFile(Resource):
 
     def post(self):
         upload = request.files['file']
+
+        if not upload.filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS:
+            return{"errors": ["Image format must be .png, .jpg, or .jpeg"]}, 422
+
         if upload.filename != "":
             try:
                 upload.save(f'./static/{upload.filename}')

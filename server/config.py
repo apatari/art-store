@@ -12,6 +12,7 @@ from flask_bcrypt import Bcrypt
 # Local imports
 
 # Instantiate app, set attributes
+
 app = Flask(__name__)
 
 app.secret_key = b'a\zf1Xz\x00\xad|eQ\x80t \xca\x1a\x10K'
