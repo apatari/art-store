@@ -131,6 +131,14 @@ class CheckSession(Resource):
             return response_body, 200
         else:
             return {"errors": "User not logged in"}, 401
+        
+class UploadFile(Resource):
+
+    def post(self):
+        upload = request.files['file']
+        if upload.filename != "":
+            upload.save(upload.filename)
+        return {"filename": upload.filename}, 201
 
 
 api.add_resource(Login, '/api/login')
@@ -138,6 +146,7 @@ api.add_resource(Logout, '/api/logout')
 api.add_resource(PieceIndex, '/api/pieces')
 api.add_resource(PieceByID, '/api/pieces/<int:id>')
 api.add_resource(CheckSession, '/api/check_session')
+api.add_resource(UploadFile, '/api/upload')
 
 # @app.route('/')
 # def index():
