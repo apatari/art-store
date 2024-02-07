@@ -142,7 +142,7 @@ function New() {
                 <Form.Group  className="mb-3">
                     <Form.Label>Select Image File</Form.Label>
                     <Form.Control type="file" onChange={(e) => {setFile(e.target.files[0])}} />
-                    <Button onClick={handleUpload} >Upload</Button>
+                    {/* <Button onClick={handleUpload} >Upload</Button> */}
                 </Form.Group>
 
 
