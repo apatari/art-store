@@ -61,13 +61,13 @@ function Seller() {
             <h2 className="m-3" >Seller page</h2>
             <ButtonGroup aria-label="Basic example">
                 <Button variant="info" onClick={handleNewClick} >New</Button>
-                <Button variant="light" onClick={handleEditClick}  >Edit</Button>
+                {/* <Button variant="light" onClick={handleEditClick}  >Edit</Button> */}
                 <Button variant="warning" onClick={handleDeleteClick} >Delete</Button>
             </ButtonGroup>
         
         <Col className="m-3 p-3 bg-light rounded" lg={8} >
             {(mode === "new")? <New/> : ""}
-            {(mode === "edit")? <Edit pieces={pieces}/> : ""}
+            {/* {(mode === "edit")? <Edit pieces={pieces}/> : ""} */}
             {(mode === "delete")? <Delete pieces={pieces} /> : ""}
         </Col>
         
