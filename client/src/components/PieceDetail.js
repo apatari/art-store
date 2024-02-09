@@ -15,7 +15,7 @@ function PieceDetail() {
         
     }, [])
 
-    // use state to check if the piece wasn't found, then show an error page with an else clause above
+
 
     if (notFound) {
         return (
