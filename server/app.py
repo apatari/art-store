@@ -166,7 +166,7 @@ api.add_resource(PieceIndex, '/api/pieces')
 api.add_resource(PieceByID, '/api/pieces/<int:id>')
 api.add_resource(CheckSession, '/api/check_session')
 api.add_resource(UploadFile, '/api/upload')
-api.add_resource(Image, "/api/images/<string:name>")
+api.add_resource(Image, "/api/pics/<string:name>")
 
 # @app.route('/')
 # def index():
