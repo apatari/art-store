@@ -19,14 +19,16 @@ function PieceDetail() {
 
     if (notFound) {
         return (
-            <h3>Piece not found!</h3>
+            <h3 className="m-4" >Oops, looks like that piece doesn't exist...</h3>
         )
     }
 
     return (
-        <div className="m-4" >
-            <h2>view for piece {piece_id} </h2>
-            {piece && <h4>There is a piece here</h4>}
+        <div className="m-4 bg-light rounded p-3" >
+            <h2>{piece.name} </h2>
+            <img src={`/api/pics/${piece.image_url}`} alt="Piece" style={{width: '40%'}} />
+            <h5>{piece.description}</h5>
+            <h3>{piece.price}</h3>
         </div>
     )
 }
