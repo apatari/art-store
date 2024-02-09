@@ -31,7 +31,7 @@ function PieceDetail() {
                     <h2 className="my-3" >{piece.name} </h2>
                     <h5 className="my-3" >{piece.description}</h5>
                     <h3 className="my-3" >{piece.price}</h3>
-                    <h5 className="" > <em> Interested in this piece?  Want to know more? Use the form below to get in touch with ML</em></h5>
+                    <h5 className="" > <em> Interested in this piece?  Want to know more? Use the form below to get in touch with ML:</em></h5>
                 </Col>
                 <Col className="d-flex m-3" >
                     <img className="mx-auto"  src={`/api/pics/${piece.image_url}`} alt="Piece" style={{width: '70%'}} />
