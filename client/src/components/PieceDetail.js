@@ -30,7 +30,8 @@ function PieceDetail() {
                 <Col lg={6} className="m-3"  >
                     <h2 className="my-3" >{piece.name} </h2>
                     <h5 className="my-3" >{piece.description}</h5>
-                    <h3 className="my-3" >{piece.price}</h3>
+                    <h3 className="my-3" >${piece.price}</h3>
+                    <hr />
                     <h5 className="" > <em> Interested in this piece?  Want to know more? Use the form below to get in touch with ML:</em></h5>
                 </Col>
                 <Col className="d-flex m-3" >

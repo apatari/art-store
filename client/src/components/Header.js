@@ -6,7 +6,7 @@ function Header() {
     return (
         <Navbar expand="lg" className="  ">
             <Container>
-                <Navbar.Brand href="#home" className="fs-2 text-secondary" style={{fontFamily: "revert" }} >
+                <Navbar.Brand href="/" className="fs-2 text-secondary" style={{fontFamily: "revert" }} >
                     <img src="/ML.png" alt="ML logo" style={{height: "100px"}} />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
