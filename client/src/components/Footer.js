@@ -27,7 +27,7 @@ function Footer() {
                       
                 </Row>
                 <Row>
-                    <Link to="seller"  >Seller</Link>  
+                    <Link to="/seller"  >Seller</Link>  
                 </Row>
             </Col>
             
