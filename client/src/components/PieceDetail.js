@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { Row, Col } from "react-bootstrap";
+import PieceContact from "./PieceContact";
 
 function PieceDetail() {
 
@@ -33,6 +34,7 @@ function PieceDetail() {
                     <h3 className="my-3" >${piece.price}</h3>
                     <hr />
                     <h5 className="" > <em> Interested in this piece?  Want to know more? Use the form below to get in touch with ML:</em></h5>
+                    <PieceContact />
                 </Col>
                 <Col className="d-flex m-3" >
                     <img className="mx-auto"  src={`/api/pics/${piece.image_url}`} alt="Piece" style={{width: '70%'}} />
