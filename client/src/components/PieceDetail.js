@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Modal, Button } from "react-bootstrap";
 import PieceContact from "./PieceContact";
 
 function PieceDetail() {
@@ -17,7 +17,10 @@ function PieceDetail() {
         
     }, [])
 
+    const [show, setShow] = useState(true)
 
+    const handleClose = () => setShow(false)
+    const handleOpen = () => setShow(true)
 
     if (notFound) {
         return (
@@ -41,7 +44,21 @@ function PieceDetail() {
                 </Col>
             </Row>
             
-            
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                <Modal.Title>{piece.name}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+                <Modal.Footer>
+                    
+                <Button variant="secondary" onClick={handleClose}>
+                    Close
+                </Button>
+                <Button variant="primary" onClick={handleClose}>
+                    Save Changes
+                </Button>
+                </Modal.Footer>
+            </Modal>
             
         </div>
     )}
