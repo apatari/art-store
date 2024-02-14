@@ -17,7 +17,7 @@ function PieceDetail() {
         
     }, [])
 
-    const [show, setShow] = useState(true)
+    const [show, setShow] = useState(false)
 
     const handleClose = () => setShow(false)
     const handleOpen = () => setShow(true)
@@ -40,24 +40,19 @@ function PieceDetail() {
                     <PieceContact piece={piece} />
                 </Col>
                 <Col className="d-flex m-3" >
-                    <img className="mx-auto"  src={`/api/pics/${piece.image_url}`} alt="Piece" style={{width: '70%'}} />
+                    <img className="mx-auto" onClick={handleOpen} src={`/api/pics/${piece.image_url}`} alt="Piece" style={{width: '70%', cursor:'pointer'}} />
                 </Col>
             </Row>
             
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} size="lg">
                 <Modal.Header closeButton>
                 <Modal.Title>{piece.name}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
-                <Modal.Footer>
-                    
-                <Button variant="secondary" onClick={handleClose}>
-                    Close
-                </Button>
-                <Button variant="primary" onClick={handleClose}>
-                    Save Changes
-                </Button>
-                </Modal.Footer>
+                <Modal.Body>
+                <img className="mx-auto"  src={`/api/pics/${piece.image_url}`} alt="Piece" style={{width: '100%'}} />
+
+                </Modal.Body>
+                
             </Modal>
             
         </div>
