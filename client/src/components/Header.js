@@ -11,17 +11,10 @@ function Header() {
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                {/* <Form className="mx-auto" >
-                    <Row>
-                    <div clasNames="input-group m-3">
-                        <input type="text" className="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2"/>
-                        <button className="btn btn-secondary" type="button" id="button-addon2">Search</button>
-                    </div>
-                    </Row>
-                </Form> */}
+                
                 <Nav className="ms-auto fs-3">
                     <Nav.Link href="/" className="mx-2" >Weavings</Nav.Link>
-                    <Nav.Link href="/about" className="mx-2" >About</Nav.Link>
+                    {/* <Nav.Link href="/about" className="mx-2" >About</Nav.Link> */}
                     <Nav.Link href="/contact" className="mx-2" >Contact</Nav.Link>
                     
                 </Nav>
