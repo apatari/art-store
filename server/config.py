@@ -1,4 +1,5 @@
 # Standard library imports
+import os
 
 # Remote library imports
 from flask import Flask
@@ -15,7 +16,7 @@ from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
 
-app.secret_key = b'a\zf1Xz\x00\xad|eQ\x80t \xca\x1a\x10K'
+app.secret_key = os.getenv('APP_SECRET_KEY')
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 
