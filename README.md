@@ -1,4 +1,4 @@
-# ML Patari Weavings - An Art Showcase and Store
+# ML Patari Weavings - An Art Showcase
 
 This repo contains the current draft of a website I am building for my mom Mary Lou Patari in order to boost the online profile for her art.  ML's work can currently be found at craft fairs, and farmer's markets in the southern Vermont area.
 
