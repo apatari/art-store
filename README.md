@@ -8,7 +8,7 @@ The site allows customers to browse the current pieces that ML has for sale. It 
 
 There are also features of the site built just for ML or anyone else who might be authorzed to manage the pieces diplayed.  For ease of access during the current development phase, these features are accessed via the "seller" link in the footer.  For deployment this link should be removed, and the sellers provided with a URL that accesses these features.  Having the URL is not the only layer of protection to prevent non-sellers from changing the pieces displayed.  Sellers are asked to provide usernames and passwords, with hashing and authentification provided by [bcrypt](https://www.npmjs.com/package/bcrypt).  
 
-This project is currently in development, and as a result some information, such as the app's secret key, are just placeholders which will be replaced with environment variables before deployment.
+This project is currently in development, and as a result some information and features will likely change before deployment.
 
 ## Setup
 
