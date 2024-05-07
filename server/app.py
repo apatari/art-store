@@ -2,10 +2,14 @@
 
 # Standard library imports
 import os
+import json
 
 # Remote library imports
-from flask import request, session, send_file
+from flask import request, session, send_file, jsonify
 from flask_restful import Resource
+
+# stripe
+import stripe
 
 # Local imports
 from config import app, db, api
@@ -157,7 +161,33 @@ class Image(Resource):
 
     def get(self, name):
         return send_file(f'./static/{name}')
-        
+
+# stripe routes
+stripe.api_key = 'sk_test_51PDnewCoCXjZNqi15hnFhxuFa1YAkQ3uNYZf5XorRayNfUcbh1kUyO3F0FUXSpcuniC1dIEC8112RPHmuTer0A8Y000Gp3glB5'
+
+# placeholder fn. TODO - check db for item price
+def calculate_order_amount():
+    return 1000
+
+@app.route('/api/create-payment-intent', methods=['POST'])
+def create_payment():
+    try:
+        data = json.loads(request.data)
+        # Create a PaymentIntent with the order amount and currency
+        intent = stripe.PaymentIntent.create(
+            #use data['items'] as the argument below once todo above is done
+            amount=calculate_order_amount(),
+            currency='usd',
+            # In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
+            automatic_payment_methods={
+                'enabled': True,
+            },
+        )
+        return jsonify({
+            'clientSecret': intent['client_secret']
+        })
+    except Exception as e:
+        return jsonify(error=str(e)), 403  
 
 
 api.add_resource(Login, '/api/login')

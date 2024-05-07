@@ -9,6 +9,7 @@ function PieceDetail() {
     const { piece_id } = useParams()
     const [piece, setPiece] = useState(null)
     const [notFound, setNotFound] = useState(false)
+    
 
     useEffect(() =>{
         fetch(`/api/pieces/${piece_id}`)
@@ -22,6 +23,7 @@ function PieceDetail() {
 
     const handleClose = () => setShow(false)
     const handleOpen = () => setShow(true)
+    
 
     if (notFound) {
         return (
@@ -38,6 +40,7 @@ function PieceDetail() {
                     <h3 className="my-3" >${piece.price}</h3>
                         
                     <BuyButton />
+                    
                     <hr />
                     <h5 className="" > <em> Interested in this piece?  Want to know more? Use the form below to get in touch with ML:</em></h5>
                     <PieceContact piece={piece} />

@@ -16,7 +16,11 @@ function BuyButton() {
                 <Modal.Header closeButton>
                 <Modal.Title>Enter Payment Information</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Stripe stuff and a form element here</Modal.Body>
+                <Modal.Body>
+                    <form action="/api/create-checkout-session" method="POST">
+                        <button type="submit">Checkout</button>
+                    </form>
+                </Modal.Body>
                 <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                     Close

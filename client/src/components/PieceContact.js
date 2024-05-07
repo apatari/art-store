@@ -19,7 +19,7 @@ function PieceContact( { piece }) {
                     <Form.Label>Your email address:</Form.Label>
                     <Form.Control type="email" name="email" required placeholder="email"/>
                 </Form.Group>
-                <Form.Control type="text" hidden name="piece" value={piece.name}/>
+                {/* <Form.Control type="text" hidden name="piece" value="Piece"/> */}
                 
                 <Button className="my-2" type="submit" >Send</Button>
             </Form>
