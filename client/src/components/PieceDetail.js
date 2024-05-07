@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { Row, Col, Modal, Button } from "react-bootstrap";
 import PieceContact from "./PieceContact";
+import BuyButton from "./BuyButton";
 
 function PieceDetail() {
 
@@ -15,7 +16,7 @@ function PieceDetail() {
             {res.json()
             .then(data => setPiece(data))} else{setNotFound(true)} })
         
-    }, [])
+    }, [piece_id])
 
     const [show, setShow] = useState(false)
 
@@ -35,6 +36,8 @@ function PieceDetail() {
                     <h2 className="my-3" >{piece.name} </h2>
                     <h5 className="my-3" >{piece.description}</h5>
                     <h3 className="my-3" >${piece.price}</h3>
+                        
+                    <BuyButton />
                     <hr />
                     <h5 className="" > <em> Interested in this piece?  Want to know more? Use the form below to get in touch with ML:</em></h5>
                     <PieceContact piece={piece} />
