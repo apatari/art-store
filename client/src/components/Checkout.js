@@ -56,11 +56,8 @@ function Checkout() {
     if (piece){
     return (
         <div>
-           {clientSecret && (
-            <Elements options={options} stripe={stripePromise}>
-              <CheckoutForm />
-            </Elements>
-          )}
+            
+           
          
             <div className="m-3" >
                 <Row  className="m-4  bg-light rounded p-3" >
@@ -71,19 +68,17 @@ function Checkout() {
                     </Col>
                     
 
-                <Row>
-                    <Col sm={2} >
-                        <Button>Purchase</Button>
-                    </Col>
-                    <Col>
-                        <Button>Cancel</Button>
-                    </Col>
-                </Row>
                 </Row>
                                         
                 
             </div>          
-        
+        <div className="mx-5 my-2 bg-light rounded p-3">
+               {clientSecret && (
+            <Elements options={options} stripe={stripePromise}>
+              <CheckoutForm />
+            </Elements>
+          )} 
+            </div>
           
           
         </div>
