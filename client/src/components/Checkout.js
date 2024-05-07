@@ -1,6 +1,6 @@
 import React, { useEffect, useState }  from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { Row, Col } from "react-bootstrap";
+import CheckoutForm from "./CheckoutForm";
 
 function Checkout() {
     const { piece_id } = useParams()
@@ -24,15 +24,7 @@ function Checkout() {
     }
     if (piece){
     return (
-        <div className="m-3" >
-            <Row  className="m-4  bg-light rounded p-3" >
-                <Col lg={6} className="m-3"  >
-                    <h2 className="my-3" >{piece.name} </h2>
-                    <h5 className="my-3" >{piece.description}</h5>
-                    <h3 className="my-3" >${piece.price}</h3> </Col></Row> 
-                                   
-            
-        </div>
+        <CheckoutForm piece={piece} />
     )}
 }
 
