@@ -39,7 +39,9 @@ function PieceDetail() {
                     <h5 className="my-3" >{piece.description}</h5>
                     <h3 className="my-3" >${piece.price}</h3>
                         
-                    <BuyButton />
+                    <a href={`/checkout/${piece.id}`}>
+                        <Button>Buy This Piece</Button>
+                    </a>
                     
                     <hr />
                     <h5 className="" > <em> Interested in this piece?  Want to know more? Use the form below to get in touch with ML:</em></h5>
