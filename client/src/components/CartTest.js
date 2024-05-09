@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import { Button } from "react-bootstrap";
+import { CartContext } from "./App";
 
 export default function CartTest() {
 
-    const [cart, setCart] = useState(10)
+    const [cart, setCart] = useContext(CartContext)
 
     const handleGet = () => {
         fetch('/api/cart')
@@ -21,7 +22,7 @@ export default function CartTest() {
                 "Content-Type": "application/json"
             },
             credentials: "same-origin",
-            body: JSON.stringify({"id": 8})
+            body: JSON.stringify({"id": 7})
         })
         .then(res => res.json())
         .then(data => setCart(JSON.stringify(data)))

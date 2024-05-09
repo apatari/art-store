@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import { Switch, Route } from "react-router-dom";
 
 
@@ -14,39 +14,47 @@ import PieceDetail from "./PieceDetail";
 import Checkout from "./Checkout";
 
 
-
+export const CartContext = createContext([])
 
 function App() {
+
+  const [cart, setCart] = useState([9])
+
+  fetch('/api/cart')
+  .then(res => res.json())
+  .then(data => setCart(data))
   return (
     <div className="bg"  >
-      <Header />
-      <Switch>
+      <CartContext.Provider value = {[cart, setCart]}>
+        <Header />
+        <Switch>
 
-        <Route exact path="/">
-          <Body />
-        </Route>
+          <Route exact path="/">
+            <Body />
+          </Route>
 
-        <Route exact path="/about">
-          <About />
-        </Route>
+          <Route exact path="/about">
+            <About />
+          </Route>
 
-        <Route exact path="/contact">
-          <Contact />
-        </Route>
+          <Route exact path="/contact">
+            <Contact />
+          </Route>
 
-        <Route exact path="/seller">
-          <Seller />
-        </Route>
+          <Route exact path="/seller">
+            <Seller />
+          </Route>
 
-        <Route exact path='/pieces/:piece_id'>
-          <PieceDetail/>
-        </Route>
+          <Route exact path='/pieces/:piece_id'>
+            <PieceDetail/>
+          </Route>
 
-        <Route exact path='/checkout/:piece_id'>
-          <Checkout/>
-        </Route>
+          <Route exact path='/checkout/:piece_id'>
+            <Checkout/>
+          </Route>
 
-      </Switch>
+        </Switch>
+      </CartContext.Provider>
 
       
       <Footer />

@@ -1,14 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { Row, Col, Modal, Button } from "react-bootstrap";
 import PieceContact from "./PieceContact";
 import BuyButton from "./BuyButton";
+import { CartContext } from "./App";
 
 function PieceDetail() {
 
     const { piece_id } = useParams()
     const [piece, setPiece] = useState(null)
     const [notFound, setNotFound] = useState(false)
+    const [cart, setCart] = useContext(CartContext)
+
+    const handleAdd = () => {
+    
+        fetch('/api/cart', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "same-origin",
+            body: JSON.stringify({"id": piece_id})
+        })
+        .then(res => res.json())
+        .then(data => setCart(JSON.stringify(data)))
+        
+    }
     
 
     useEffect(() =>{
@@ -38,10 +55,12 @@ function PieceDetail() {
                     <h2 className="my-3" >{piece.name} </h2>
                     <h5 className="my-3" >{piece.description}</h5>
                     <h3 className="my-3" >${piece.price}</h3>
-                        
-                    <a href={`/checkout/${piece.id}`}>
+
+
+                    <Button onClick={handleAdd} >Add to cart</Button> 
+                    {/* <a href={`/checkout/${piece.id}`}>
                         <Button>Buy This Piece</Button>
-                    </a>
+                    </a> */}
                     
                     <hr />
                     <h5 className="" > <em> Interested in this piece?  Want to know more? Use the form below to get in touch with ML:</em></h5>
