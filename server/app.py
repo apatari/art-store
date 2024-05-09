@@ -212,6 +212,7 @@ def webhook():
     # Handle the event
     if event['type'] == 'payment_intent.succeeded':
       payment_intent = event['data']['object']
+      # print is placeholder. TODO - create a record in transactions database
       print(payment_intent)
     # ... handle other event types
     else:
