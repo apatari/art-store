@@ -12,7 +12,7 @@ from flask_restful import Resource
 import stripe
 
 # Local imports
-from config import app, db, api
+from config import app, db, api, stripe_api_key, stripe_endpoint_secret
 # Add your model imports
 from models import Seller, Piece
 
@@ -163,7 +163,7 @@ class Image(Resource):
         return send_file(f'./static/{name}')
 
 # stripe routes
-stripe.api_key = 'sk_test_51PDnewCoCXjZNqi15hnFhxuFa1YAkQ3uNYZf5XorRayNfUcbh1kUyO3F0FUXSpcuniC1dIEC8112RPHmuTer0A8Y000Gp3glB5'
+stripe.api_key = stripe_api_key
 
 # placeholder fn. TODO - check db for item price
 def calculate_order_amount():
@@ -190,6 +190,34 @@ def create_payment():
     except Exception as e:
         return jsonify(error=str(e)), 403  
 
+
+@app.route('/webhooks', methods=['POST'])
+def webhook():
+    
+    event = None
+    payload = request.data
+    sig_header = request.headers['STRIPE_SIGNATURE']
+
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, stripe_endpoint_secret
+        )
+    except ValueError as e:
+        # Invalid payload
+        raise e
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        raise e
+
+    # Handle the event
+    if event['type'] == 'payment_intent.succeeded':
+      payment_intent = event['data']['object']
+      print(payment_intent)
+    # ... handle other event types
+    else:
+      print('Unhandled event type {}'.format(event['type']))
+
+    return jsonify(success=True)
 
 api.add_resource(Login, '/api/login')
 api.add_resource(Logout, '/api/logout')

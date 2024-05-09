@@ -1,5 +1,6 @@
 # Standard library imports
 import os
+from dotenv import load_dotenv
 
 # Remote library imports
 from flask import Flask
@@ -11,6 +12,11 @@ from sqlalchemy import MetaData
 from flask_bcrypt import Bcrypt
 
 # Local imports
+
+# env vars
+load_dotenv()
+stripe_api_key = os.environ.get('STRIPE_SECRET_KEY')
+stripe_endpoint_secret = os.environ.get('STRIPE_ENDPOINT_SECRET')
 
 # Instantiate app, set attributes
 

@@ -17,6 +17,7 @@ flask-bcrypt = "*"
 validators = "*"
 flask-mail = "*"
 stripe = "*"
+python-dotenv = "*"
 
 [requires]
 python_full_version = "3.8.13"
