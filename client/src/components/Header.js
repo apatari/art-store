@@ -1,6 +1,7 @@
 import React from "react";
-import { Nav, Container, Navbar, Row, Col, Form, Button } from "react-bootstrap"
+import { Nav, Container, Navbar} from "react-bootstrap"
 import "./header.css"
+import CartTest from "./CartTest";
 
 function Header() {
     return (
@@ -19,6 +20,7 @@ function Header() {
                     
                 </Nav>
                 </Navbar.Collapse>
+                <CartTest />
             </Container>
         </Navbar>
     )
