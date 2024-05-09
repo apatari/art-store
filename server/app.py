@@ -149,10 +149,16 @@ class CheckCart(Resource):
         
         else:
             return {'status': 'empty'}, 200
+    
+    
+    def delete(self):
+        session['cart'] = []
+        session.modified = True
+
+        return [], 200
         
     def post(self):
-        # session['cart'] = []
-        # return session['cart'], 201
+    
         json = request.get_json()
         product_id = json['id']
 

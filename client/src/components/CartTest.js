@@ -12,6 +12,11 @@ export default function CartTest() {
         .then(res => res.json())
         .then(data => setCart(JSON.stringify(data)))
     }
+    const handleClear = () => {
+        fetch('/api/cart', {method: 'DELETE'})
+        .then(res => res.json())
+        .then(data => setCart(JSON.stringify(data)))
+    }
 
     const handlePost = () => {
     
@@ -31,6 +36,7 @@ export default function CartTest() {
     return (
 
         <div>
+            <Button onClick={handleClear}>Clear</Button>
             <Button onClick={handleGet}>GET</Button>
             <Button onClick={handlePost}>POST</Button>
             {cart}
