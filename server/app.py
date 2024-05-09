@@ -139,6 +139,34 @@ class CheckSession(Resource):
         else:
             return {"errors": "User not logged in"}, 401
         
+class CheckCart(Resource):
+    def get(self):
+        if 'cart' in session:
+            return session['cart'], 200
+        
+        else:
+            return {'status': 'empty'}, 200
+        
+    def post(self):
+        print(session)
+        json = request.get_json()
+
+        product_id = json['id']
+        if 'cart' in session:
+            if not product_id in session['cart']:
+                session['cart'][product_id] = 1
+            else:
+                session['cart'][product_id] = 0
+            print(session)
+            return session['cart'], 201
+        else:
+            session['cart'] = {product_id: 1}
+            print(session)
+            return session['cart'], 200
+
+            
+
+        
 class UploadFile(Resource):
 
     def post(self):
@@ -227,6 +255,7 @@ api.add_resource(PieceByID, '/api/pieces/<int:id>')
 api.add_resource(CheckSession, '/api/check_session')
 api.add_resource(UploadFile, '/api/upload')
 api.add_resource(Image, "/api/pics/<string:name>")
+api.add_resource(CheckCart, "/api/cart")
 
 # @app.route('/')
 # def index():
