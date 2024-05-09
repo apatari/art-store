@@ -20,7 +20,7 @@ function PieceDetail() {
                 "Content-Type": "application/json"
             },
             credentials: "same-origin",
-            body: JSON.stringify({"id": piece_id})
+            body: JSON.stringify({"id": parseInt(piece_id)})
         })
         .then(res => res.json())
         .then(data => setCart(JSON.stringify(data)))

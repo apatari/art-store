@@ -14,8 +14,7 @@ export default function CartTest() {
     }
 
     const handlePost = () => {
-        // axios.post('/api/cart', {"id": 4}, {withCredentials: true})
-        // .then(res => setCart(JSON.stringify(res.data)))
+    
         fetch('/api/cart', {
             method: "POST",
             headers: {

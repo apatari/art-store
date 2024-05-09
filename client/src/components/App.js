@@ -20,9 +20,12 @@ function App() {
 
   const [cart, setCart] = useState([9])
 
-  fetch('/api/cart')
+  useEffect(() => {
+    fetch('/api/cart')
   .then(res => res.json())
-  .then(data => setCart(data))
+  .then(data => setCart(JSON.stringify(data)))
+  }, [])
+  
   return (
     <div className="bg"  >
       <CartContext.Provider value = {[cart, setCart]}>
