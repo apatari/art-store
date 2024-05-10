@@ -7,7 +7,7 @@ export default function CartDropdown() {
     
 
     return(
-        <div className="d-flex me-3 ">
+        <div className="d-flex m-3 ">
             <p className="my-auto fs-5 bg-info bg-opacity-25 p-2 rounded ">Shopping Cart {(cart.length === 0)? "" : "(" + (cart.length)  + ")"} </p>
         </div>
     )

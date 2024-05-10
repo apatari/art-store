@@ -23,7 +23,10 @@ function PieceDetail() {
             body: JSON.stringify({"id": parseInt(piece_id)})
         })
         .then(res => res.json())
-        .then(data => setCart(data))
+        .then(data => {
+            setCart(data)
+            handleOpenCartMsg()
+        })
         
     }
     
@@ -37,9 +40,13 @@ function PieceDetail() {
     }, [piece_id])
 
     const [show, setShow] = useState(false)
+    const [showCartMsg, setShowCartMsg] = useState(false)
 
     const handleClose = () => setShow(false)
     const handleOpen = () => setShow(true)
+
+    const handleCloseCartMsg = () => setShowCartMsg(false)
+    const handleOpenCartMsg = () => setShowCartMsg(true)
     
 
     if (notFound) {
@@ -79,6 +86,18 @@ function PieceDetail() {
                 <img className="mx-auto"  src={`/api/pics/${piece.image_url}`} alt="Piece" style={{width: '100%'}} />
 
                 </Modal.Body>
+                
+            </Modal>
+
+            <Modal show={showCartMsg} onHide={handleCloseCartMsg} size="md">
+                <Modal.Header closeButton>
+                <Modal.Title>{piece.name} has been added to your cart!</Modal.Title>
+                </Modal.Header>
+                <Modal.Footer>
+                    <Button className="me-auto">Checkout</Button>
+                    <Button onClick={handleCloseCartMsg} >Keep Shopping!</Button>
+
+                </Modal.Footer>
                 
             </Modal>
             

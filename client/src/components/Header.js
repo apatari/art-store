@@ -20,10 +20,11 @@ function Header() {
                     <Nav.Link href="/" className="mx-2" >Weavings</Nav.Link>
                     {/* <Nav.Link href="/about" className="mx-2" >About</Nav.Link> */}
                     <Nav.Link href="/contact" className="mx-2" >Contact</Nav.Link>
-                    <CartDropdown />
+                    
                 </Nav>
                  
                 </Navbar.Collapse>
+                <CartDropdown />
                 <CartTest />
             </Container>
         </Navbar>
