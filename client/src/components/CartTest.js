@@ -10,12 +10,12 @@ export default function CartTest() {
     const handleGet = () => {
         fetch('/api/cart')
         .then(res => res.json())
-        .then(data => setCart(JSON.stringify(data)))
+        .then(data => setCart(data))
     }
     const handleClear = () => {
         fetch('/api/cart', {method: 'DELETE'})
         .then(res => res.json())
-        .then(data => setCart(JSON.stringify(data)))
+        .then(data => setCart(data))
     }
 
     const handlePost = () => {
@@ -29,7 +29,7 @@ export default function CartTest() {
             body: JSON.stringify({"id": 7})
         })
         .then(res => res.json())
-        .then(data => setCart(JSON.stringify(data)))
+        .then(data => setCart(data))
         
     }
 

@@ -18,12 +18,15 @@ export const CartContext = createContext([])
 
 function App() {
 
-  const [cart, setCart] = useState([9])
+  const [cart, setCart] = useState([])
 
   useEffect(() => {
     fetch('/api/cart')
   .then(res => res.json())
-  .then(data => setCart(JSON.stringify(data)))
+  .then(data => {
+    
+    setCart(data)
+  })
   }, [])
   
   return (

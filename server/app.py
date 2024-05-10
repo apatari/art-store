@@ -148,7 +148,7 @@ class CheckCart(Resource):
             # return {"items": len(session['cart'])}, 200
         
         else:
-            return {'status': 'empty'}, 200
+            return [], 200
     
     
     def delete(self):

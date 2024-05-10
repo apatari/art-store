@@ -23,7 +23,7 @@ function PieceDetail() {
             body: JSON.stringify({"id": parseInt(piece_id)})
         })
         .then(res => res.json())
-        .then(data => setCart(JSON.stringify(data)))
+        .then(data => setCart(data))
         
     }
     

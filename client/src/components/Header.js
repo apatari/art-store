@@ -2,6 +2,7 @@ import React from "react";
 import { Nav, Container, Navbar} from "react-bootstrap"
 import "./header.css"
 import CartTest from "./CartTest";
+import CartDropdown from "./CartDropdown";
 
 
 function Header() {
@@ -19,8 +20,9 @@ function Header() {
                     <Nav.Link href="/" className="mx-2" >Weavings</Nav.Link>
                     {/* <Nav.Link href="/about" className="mx-2" >About</Nav.Link> */}
                     <Nav.Link href="/contact" className="mx-2" >Contact</Nav.Link>
-                    
+                    <CartDropdown />
                 </Nav>
+                 
                 </Navbar.Collapse>
                 <CartTest />
             </Container>
