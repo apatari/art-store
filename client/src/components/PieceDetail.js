@@ -32,6 +32,7 @@ function PieceDetail() {
     
 
     useEffect(() =>{
+        
         fetch(`/api/pieces/${piece_id}`)
         .then(res => {if (res.ok)
             {res.json()
@@ -47,6 +48,9 @@ function PieceDetail() {
 
     const handleCloseCartMsg = () => setShowCartMsg(false)
     const handleOpenCartMsg = () => setShowCartMsg(true)
+
+    const inCart = (cart.includes(parseInt(piece_id)))
+
     
 
     if (notFound) {
@@ -63,11 +67,8 @@ function PieceDetail() {
                     <h5 className="my-3" >{piece.description}</h5>
                     <h3 className="my-3" >${piece.price}</h3>
 
-
-                    <Button onClick={handleAdd} >Add to cart</Button> 
-                    {/* <a href={`/checkout/${piece.id}`}>
-                        <Button>Buy This Piece</Button>
-                    </a> */}
+                    {inCart? <Button onClick={handleAdd} className="btn-success" >Remove from cart</Button>:<Button onClick={handleAdd} >Add to cart</Button> }
+                     
                     
                     <hr />
                     <h5 className="" > <em> Interested in this piece?  Want to know more? Use the form below to get in touch with ML:</em></h5>
@@ -91,10 +92,12 @@ function PieceDetail() {
 
             <Modal show={showCartMsg} onHide={handleCloseCartMsg} size="md">
                 <Modal.Header closeButton>
-                <Modal.Title>{piece.name} has been added to your cart!</Modal.Title>
+                <Modal.Title> 
+                    {piece.name} {inCart? " has been added to your cart!":" has been removed from your cart"}
+                </Modal.Title>
                 </Modal.Header>
                 <Modal.Footer>
-                    <Button className="me-auto">Checkout</Button>
+                    <Button className="me-auto btn-secondary">Checkout</Button>
                     <Button onClick={handleCloseCartMsg} >Keep Shopping!</Button>
 
                 </Modal.Footer>
