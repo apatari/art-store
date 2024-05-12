@@ -36,7 +36,7 @@ function Header() {
                     <CartTest />
                 </Container>
             </Navbar>
-            <Offcanvas show={show} onHide={handleClose}>
+            <Offcanvas show={show} onHide={handleClose} placement="end" scroll='true'>
                 <Offcanvas.Header closeButton>
                 <Offcanvas.Title>Offcanvas</Offcanvas.Title>
                 </Offcanvas.Header>
