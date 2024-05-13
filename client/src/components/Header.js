@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Nav, Container, Navbar, Offcanvas} from "react-bootstrap"
 import "./header.css"
 import CartTest from "./CartTest";
 import CartDropdown from "./CartDropdown";
+import { CartContext } from "./App";
 
 
-function Header() {
+function Header({ pieces }) {
+
+    const [cart, setCart] = useContext(CartContext)
 
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false)
     const handleOpen = () => setShow(true)
+
+    const cartPieces = pieces.filter(piece => cart.includes(piece.id))
 
     return (
         <div>
@@ -42,8 +47,7 @@ function Header() {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     
-                Some text as placeholder. In real life you can have the elements you
-                have chosen. Like, text, images, lists, etc.
+                {cartPieces.map(item => <p>{item.name}</p> )}
                 </Offcanvas.Body>
             </Offcanvas>
 

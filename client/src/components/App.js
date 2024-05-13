@@ -42,7 +42,7 @@ function App() {
   return (
     <div className="bg"  >
       <CartContext.Provider value = {[cart, setCart]}>
-        <Header />
+        <Header pieces={pieces} />
         <Switch>
 
           <Route exact path="/">
