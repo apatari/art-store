@@ -1,16 +1,8 @@
 import React, { useEffect, useState } from "react";
 import PieceList from "./PieceList";
 
-function Body() {
+function Body({ pieces }) {
 
-    const [pieces, setPieces] = useState([])
-
-    useEffect(() => {
-        fetch('/api/pieces')
-        .then(res => res.json())
-        .then(data => setPieces(data)
-            )
-    }, [])
 
 
     return (

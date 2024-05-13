@@ -28,6 +28,16 @@ function App() {
     setCart(data)
   })
   }, [])
+
+  const [pieces, setPieces] = useState([])
+
+  useEffect(() => {
+      fetch('/api/pieces')
+      .then(res => res.json())
+      .then(data => setPieces(data)
+          )
+  }, [])
+
   
   return (
     <div className="bg"  >
@@ -36,7 +46,7 @@ function App() {
         <Switch>
 
           <Route exact path="/">
-            <Body />
+            <Body pieces={pieces} />
           </Route>
 
           <Route exact path="/about">

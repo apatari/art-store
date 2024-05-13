@@ -38,9 +38,10 @@ function Header() {
             </Navbar>
             <Offcanvas show={show} onHide={handleClose} placement="end" scroll='true'>
                 <Offcanvas.Header closeButton>
-                <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+                    <Offcanvas.Title>Your Cart</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
+                    
                 Some text as placeholder. In real life you can have the elements you
                 have chosen. Like, text, images, lists, etc.
                 </Offcanvas.Body>
