@@ -2,6 +2,7 @@ import React from "react";
 import { Row, Col, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import "./delButton.css"
 
 
 export default function CartItem({ piece, setCart }) {
@@ -41,7 +42,7 @@ export default function CartItem({ piece, setCart }) {
                     
                 </Col>
                 <Col className="d-flex">
-                    <Button onClick={handleDelete} className="ms-auto rounded btn-secondary" >
+                    <Button onClick={handleDelete} className="ms-auto rounded btn-secondary delbtn" >
                         <FontAwesomeIcon icon={faTrash} />
                     </Button>
                 </Col>
