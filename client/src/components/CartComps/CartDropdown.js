@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { CartContext } from "./App";
+import { CartContext } from "../App";
 
 export default function CartDropdown({ handleOpen }) {
 

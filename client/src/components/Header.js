@@ -2,8 +2,9 @@ import React, { useState, useContext } from "react";
 import { Nav, Container, Navbar, Offcanvas} from "react-bootstrap"
 import "./header.css"
 import CartTest from "./CartTest";
-import CartDropdown from "./CartDropdown";
+import CartDropdown from "./CartComps/CartDropdown";
 import { CartContext } from "./App";
+import CartItem from "./CartComps/CartItem";
 
 
 function Header({ pieces }) {
@@ -38,7 +39,7 @@ function Header({ pieces }) {
 
                     <CartDropdown handleOpen={handleOpen}  />
                     
-                    <CartTest />
+                    
                 </Container>
             </Navbar>
             <Offcanvas show={show} onHide={handleClose} placement="end" scroll='true'>
@@ -47,7 +48,7 @@ function Header({ pieces }) {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     
-                {cartPieces.map(item => <p>{item.name}</p> )}
+                {cartPieces.map(item => <CartItem key={item.id} piece={item} /> )}
                 </Offcanvas.Body>
             </Offcanvas>
 
