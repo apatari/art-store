@@ -36,7 +36,7 @@ export default function CartItem({ piece, setCart }) {
                 </Col>
                 <Col className="" >
                     <div className="text-end fs-4">
-                        {piece.price}
+                        ${piece.price}
 
                     </div>
                     
