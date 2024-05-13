@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { CartContext } from "../App";
 
-export default function CartDropdown({ handleOpen }) {
+export default function CartButton({ handleOpen }) {
 
     const [cart] = useContext(CartContext)
     

@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Nav, Container, Navbar, Offcanvas, Row, Col} from "react-bootstrap"
 import "./header.css"
 import CartTest from "./CartTest";
-import CartDropdown from "./CartComps/CartDropdown";
+import CartButton from "./CartComps/CartButton";
 import { CartContext } from "./App";
 import CartItem from "./CartComps/CartItem";
 
@@ -40,7 +40,7 @@ function Header({ pieces }) {
                     </Navbar.Collapse>
                     
 
-                    <CartDropdown handleOpen={handleOpen}  />
+                    <CartButton handleOpen={handleOpen}  />
                     
                     
                 </Container>
