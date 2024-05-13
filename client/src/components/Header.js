@@ -48,7 +48,7 @@ function Header({ pieces }) {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     
-                {cartPieces.map(item => <CartItem key={item.id} piece={item} /> )}
+                {cartPieces.map(item => <CartItem key={item.id} piece={item} setCart={setCart} /> )}
                 </Offcanvas.Body>
             </Offcanvas>
 
