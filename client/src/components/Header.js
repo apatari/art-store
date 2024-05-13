@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Nav, Container, Navbar, Offcanvas} from "react-bootstrap"
+import { Nav, Container, Navbar, Offcanvas, Row, Col} from "react-bootstrap"
 import "./header.css"
 import CartTest from "./CartTest";
 import CartDropdown from "./CartComps/CartDropdown";
@@ -16,6 +16,9 @@ function Header({ pieces }) {
     const handleOpen = () => setShow(true)
 
     const cartPieces = pieces.filter(piece => cart.includes(piece.id))
+    const preTotal = cartPieces.reduce((acc,piece) => {
+        return acc += piece.price}, 0  )
+
 
     return (
         <div>
@@ -49,6 +52,25 @@ function Header({ pieces }) {
                 <Offcanvas.Body>
                     
                 {cartPieces.map(item => <CartItem key={item.id} piece={item} setCart={setCart} /> )}
+
+                <hr />
+                <Row className="bg-primary bg-opacity-25 m-2 p-2 rounded">
+                    <Col>
+                        <Row className="fs-4">
+                            Total:
+                        </Row>
+                        <Row>
+                            Plus tax and shipping
+                        </Row>
+                    </Col>
+                    <Col>
+                        <div className="text-end fs-3"> ${preTotal}
+
+                        </div>
+                    </Col>
+                </Row>
+                
+                
                 </Offcanvas.Body>
             </Offcanvas>
 
