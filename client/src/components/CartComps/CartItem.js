@@ -27,8 +27,11 @@ export default function CartItem({ piece, setCart }) {
     return (
         <div className="bg-secondary bg-opacity-25 m-2 rounded p-2">
             <Row>
-                <Col>
+                <Col className="fs-5"sm={5} >
                     {piece.name}
+                </Col>
+                <Col>
+                <img className="mx-auto" src={`/api/pics/${piece.image_url}`} alt="Piece" style={{width: '3rem', cursor:'pointer'}} />
                 </Col>
                 <Col className="" >
                     <div className="text-end fs-4">
