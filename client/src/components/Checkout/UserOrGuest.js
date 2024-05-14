@@ -37,7 +37,7 @@ export default function UserOrGuest() {
                 <Col className="border-start d-flex">
                     <div className="mx-auto">
 
-                        <Button size="lg" className="my-5"> Continue as a guest</Button>
+                        <Button size="lg" className="my-5" href="/checkout/guest"> Continue as a guest</Button>
                     </div>
                 </Col>
             </Row>
