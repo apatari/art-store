@@ -1,5 +1,6 @@
 import React from "react";
 import { Row, Col, Button, Form } from "react-bootstrap";
+import CheckoutItemsList from "./CheckoutItemsList";
 
 export default function UserOrGuest() {
     return (
@@ -9,7 +10,17 @@ export default function UserOrGuest() {
             </div>
             
             <div className="my-3 d-flex">
-                <p className="mx-4 my-2 fs-3 mt-4">Log in or continue as a guest:</p>
+                <p className="mx-4 my-2 fs-3 mt-4">1) Review your order:</p>
+            </div>
+
+            <div className="my-4 mx-4">
+                <CheckoutItemsList />
+            </div>
+
+            
+
+            <div className="my-3 d-flex">
+                <p className="mx-4 my-2 fs-3 mt-4">2) Log in or continue as a guest:</p>
             </div>
 
             <Row className="mb-3">
