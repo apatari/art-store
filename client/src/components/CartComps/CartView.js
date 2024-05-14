@@ -17,22 +17,28 @@ export default function CartView ({ show, handleClose, setCart, cartPieces}) {
             {cartPieces.map(item => <CartItem key={item.id} piece={item} setCart={setCart} /> )}
 
             <hr />
-            <Row className="bg-primary bg-opacity-25 m-2 p-2 rounded">
-                <Col>
-                    <Row className="fs-4">
-                        Total:
-                    </Row>
-                    <Row>
-                        Plus tax and shipping
-                    </Row>
-                </Col>
-                <Col>
-                    <div className="text-end fs-3"> ${preTotal}
 
-                    </div>
-                </Col>
-            </Row>
-            
+            {(cartPieces.length === 0)?
+                <Row className="bg-danger bg-opacity-25 m-2 p-2 rounded fs-4">
+                    Cart is empty
+                 </Row> :
+                <Row className="bg-primary bg-opacity-25 m-2 p-2 rounded">
+                    <Col>
+                        <Row className="fs-4">
+                            Total:
+                        </Row>
+                        <Row>
+                            Plus tax and shipping
+                        </Row>
+                    </Col>
+                    <Col>
+                        <div className="text-end fs-3"> ${preTotal}
+
+                        </div>
+                    </Col>
+                </Row>
+            }
+
             
             </Offcanvas.Body>
         </Offcanvas>
