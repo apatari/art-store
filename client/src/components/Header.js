@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Nav, Container, Navbar, Offcanvas, Row, Col} from "react-bootstrap"
+import { Nav, Container, Navbar } from "react-bootstrap"
 import "./header.css"
 
 import CartButton from "./CartComps/CartButton";
@@ -17,9 +17,6 @@ function Header({ pieces }) {
     const handleOpen = () => setShow(true)
 
     const cartPieces = pieces.filter(piece => cart.includes(piece.id))
-    const preTotal = cartPieces.reduce((acc,piece) => {
-        return acc += piece.price}, 0  )
-
 
     return (
         <div>
