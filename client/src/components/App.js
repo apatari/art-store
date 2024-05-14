@@ -11,7 +11,7 @@ import About from "./About";
 import Contact from "./Contact";
 import Seller from "./Seller";
 import PieceDetail from "./PieceDetail";
-import Checkout from "./Checkout";
+import Checkout from "./Checkout/Checkout";
 
 
 export const CartContext = createContext([])
