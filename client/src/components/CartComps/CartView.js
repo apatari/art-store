@@ -1,5 +1,5 @@
 import React from "react"
-import { Offcanvas, Row, Col } from "react-bootstrap"
+import { Offcanvas, Row, Col, Button } from "react-bootstrap"
 import CartItem from "./CartItem"
 
 export default function CartView ({ show, handleClose, setCart, cartPieces}) {
@@ -22,6 +22,8 @@ export default function CartView ({ show, handleClose, setCart, cartPieces}) {
                 <Row className="bg-danger bg-opacity-25 m-2 p-2 rounded fs-4">
                     Cart is empty
                  </Row> :
+                 <div>
+
                 <Row className="bg-primary bg-opacity-25 m-2 p-2 rounded">
                     <Col>
                         <Row className="fs-4">
@@ -37,6 +39,8 @@ export default function CartView ({ show, handleClose, setCart, cartPieces}) {
                         </div>
                     </Col>
                 </Row>
+                <Button href="/checkout" className="m-2 ">Checkout</Button>
+                 </div>
             }
 
             
