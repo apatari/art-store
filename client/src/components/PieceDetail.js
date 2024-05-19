@@ -97,7 +97,7 @@ function PieceDetail() {
                 </Modal.Title>
                 </Modal.Header>
                 <Modal.Footer>
-                    <Button className="me-auto btn-secondary">Checkout</Button>
+                    <Button href="/checkout" className="me-auto btn-secondary">Checkout</Button>
                     <Button onClick={handleCloseCartMsg} >Keep Shopping!</Button>
 
                 </Modal.Footer>
