@@ -4,7 +4,7 @@ This repo contains the current draft of a website I am building for my mom Mary 
 
 ## Structure and Functionality
 
-The site allows customers to browse the current pieces that ML has for sale. It provides an image, description and price for each.  Clicking on any image's card will provide a closer look and give users a form they can use to ask questions or let ML know they are interested in the piece.  ML's preference is that this site is a way to get in touch with her, rather than a commerce platform, so there is no way to directly purchase on the site.
+The site allows customers to browse the current pieces that ML has for sale. It provides an image, description and price for each.  Clicking on any image's card will provide a closer look and give users a form they can use to ask questions or let ML know they are interested in the piece.  The checkout and payment elements are currently in development.  The Stripe Account is set to 'Test Mode' and no transactions made on the will result in actual charges or payments.
 
 There are also features of the site built just for ML or anyone else who might be authorzed to manage the pieces diplayed.  For ease of access during the current development phase, these features are accessed via the "seller" link in the footer.  For deployment this link should be removed, and the sellers provided with a URL that accesses these features.  Having the URL is not the only layer of protection to prevent non-sellers from changing the pieces displayed.  Sellers are asked to provide usernames and passwords, with hashing and authentification provided by [bcrypt](https://www.npmjs.com/package/bcrypt).  
 
