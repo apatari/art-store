@@ -2,6 +2,7 @@ import React from "react";
 import { Row, Col, Button,  } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import "../CartComps/delButton.css"
 
 export default function CheckoutItem({ piece, setCart }) {
 
@@ -17,35 +18,35 @@ export default function CheckoutItem({ piece, setCart }) {
         })
         .then(res => res.json())
         .then(data => {
-            setCart(data)
-            
-        })
-        
+            setCart(data)     
+        })    
     }
 
     return (
         <div >
             <Row >
-                <Col md={8} className="bg-secondary bg-opacity-25 m-2 rounded p-2" >
+                <Col md={6} className="bg-info bg-opacity-25 m-2 rounded p-4" >
                     <Row>
 
-                        <Col className="fs-5"sm={5} >
+                        <Col className="fs-3"sm={4} >
                             {piece.name}
                         </Col>
                         <Col>
-                            <img className="mx-auto" src={`/api/pics/${piece.image_url}`} alt="Piece" style={{width: '5rem', cursor:'pointer'}} />
+                            <img className="mx-auto border" src={`/api/pics/${piece.image_url}`} alt="Piece" style={{width: '5rem', cursor:'pointer'}} />
                         </Col>
-                        <Col className="" >
-                            <div className="text-end fs-4">
+                        <Col className="d-flex">
+                            <div className="text-end fs-4 my-auto ms-auto">
                                 ${piece.price}
 
                             </div>
                             
                         </Col>
                         <Col className="d-flex">
-                            <Button onClick={handleDelete} className="ms-auto rounded btn-secondary delbtn" >
-                                <FontAwesomeIcon icon={faTrash} />
-                            </Button>
+                            <div className="ms-auto my-auto">
+                                <Button onClick={handleDelete} className="ms-auto rounded btn-secondary delbtn">
+                                    <FontAwesomeIcon icon={faTrash} />
+                                </Button>
+                            </div>
                         </Col>
                     </Row>
                 </Col>
