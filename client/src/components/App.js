@@ -68,7 +68,7 @@ function App() {
           </Route>
 
           <Route exact path='/checkout/'>
-            <UserOrGuest/>
+            <UserOrGuest pieces={pieces}/>
           </Route>
 
           <Route exact path='/checkout/guest'>

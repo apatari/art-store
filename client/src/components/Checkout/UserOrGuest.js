@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col, Button, Form } from "react-bootstrap";
 import CheckoutItemsList from "./CheckoutItemsList";
 
-export default function UserOrGuest() {
+export default function UserOrGuest({ pieces }) {
     return (
         <div className="my-3 mx-5 p-3 bg-light rounded">
             <div>
@@ -14,7 +14,7 @@ export default function UserOrGuest() {
             </div>
 
             <div className="my-4 mx-4">
-                <CheckoutItemsList />
+                <CheckoutItemsList pieces={pieces} />
             </div>
 
             
