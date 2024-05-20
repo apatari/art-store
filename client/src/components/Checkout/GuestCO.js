@@ -1,7 +1,27 @@
 import React from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
+import * as yup from "yup";
+import { useFormik } from "formik";
 
-export default function GuestCO() {
+export default function GuestCO({ setUserInfo }) {
+    const states = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 
+    'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 
+    'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 
+    'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 
+    'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 
+    'WI', 'WY' ];
+
+    const formSchema =yup.object().shape({
+        email: yup.string().email('Invalid email format').required('Must provide an email address'),
+        address: yup.string().required('Must provide an address'),
+        address2: yup.string('Must be a string'),
+        city: yup.string().required('Must provide a city'),
+        state: yup.string().oneOf(states, 'Must be a valid state abbreviation').required('Must provide a state abbreviation'),
+        zip: yup.number().required('Must provide a zip code')
+    })
+
+
+
     return (
         <div className="my-3 mx-5 p-3 bg-light rounded">
             <Form>

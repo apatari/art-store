@@ -21,6 +21,7 @@ export const CartContext = createContext([])
 function App() {
 
   const [cart, setCart] = useState([])
+  const [userInfo, setUserInfo] = useState({})
 
   useEffect(() => {
     fetch('/api/cart')
@@ -72,7 +73,7 @@ function App() {
           </Route>
 
           <Route exact path='/checkout/guest'>
-            <GuestCO/>
+            <GuestCO setUserInfo={setUserInfo}/>
           </Route>
 
         </Switch>
