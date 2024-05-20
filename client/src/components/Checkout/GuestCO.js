@@ -16,8 +16,12 @@ export default function GuestCO({ setUserInfo }) {
         address: yup.string().required('Must provide an address'),
         address2: yup.string('Must be a string'),
         city: yup.string().required('Must provide a city'),
-        state: yup.string().oneOf(states, 'Must be a valid state abbreviation').required('Must provide a state abbreviation'),
-        zip: yup.number().required('Must provide a zip code')
+        state: yup.string().oneOf(states, 'Invalid state abbreviation').required('Must provide a state abbreviation'),
+        zip: yup.string()
+        .required('Must provide a zip code')
+        .matches(/^[0-9]+$/, "Must be only digits")
+        .min(5, 'Must be exactly 5 digits')
+        .max(5, 'Must be exactly 5 digits')
     })
 
     const formik = useFormik({
@@ -44,12 +48,13 @@ export default function GuestCO({ setUserInfo }) {
                     <Form.Group as={Col}  md={6} >
                     <Form.Label>Email</Form.Label>
                     <Form.Control 
-                        type="email" 
+                        type="text" 
                         placeholder="Enter email"
                         id="email"
                         name="email"
                         value={formik.values.email}
                         onChange={formik.handleChange} />
+                        {formik.errors.email ? <div className="text-danger">{formik.errors.email}</div>:""}
                     </Form.Group>   
                 </Row>
 
@@ -62,6 +67,7 @@ export default function GuestCO({ setUserInfo }) {
                         name="address"
                         value={formik.values.address}
                         onChange={formik.handleChange} />
+                        {formik.errors.address ? <div className="text-danger">{formik.errors.address}</div>:""}
                 </Form.Group>
 
                 <Form.Group className="mb-3" >
@@ -84,6 +90,7 @@ export default function GuestCO({ setUserInfo }) {
                         name="city"
                         value={formik.values.city}
                         onChange={formik.handleChange}  />
+                        {formik.errors.city ? <div className="text-danger">{formik.errors.city}</div>:""}
                     </Form.Group>
 
                     <Form.Group as={Col} >
@@ -94,6 +101,7 @@ export default function GuestCO({ setUserInfo }) {
                         name="state"
                         value={formik.values.state}
                         onChange={formik.handleChange}/>
+                        {formik.errors.state ? <div className="text-danger">{formik.errors.state}</div>:""}
                     </Form.Group>
 
                     <Form.Group as={Col} >
@@ -104,6 +112,7 @@ export default function GuestCO({ setUserInfo }) {
                         name="zip"
                         value={formik.values.zip}
                         onChange={formik.handleChange}/>
+                        {formik.errors.zip ? <div className="text-danger">{formik.errors.zip}</div>:""}
                     </Form.Group>
                 </Row>
 
