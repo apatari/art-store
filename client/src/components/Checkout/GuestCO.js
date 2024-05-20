@@ -2,6 +2,7 @@ import React from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import * as yup from "yup";
 import { useFormik } from "formik";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function GuestCO({ setUserInfo }) {
     const states = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 
@@ -10,6 +11,8 @@ export default function GuestCO({ setUserInfo }) {
     'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 
     'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 
     'WI', 'WY' ];
+
+    const history = useHistory()
 
     const formSchema =yup.object().shape({
         email: yup.string().email('Invalid email format').required('Must provide an email address'),
@@ -36,7 +39,11 @@ export default function GuestCO({ setUserInfo }) {
         validationSchema: formSchema,
         validateOnChange: false,
         validateOnBlur: false,
-        onSubmit: (values) => console.log(values)
+        onSubmit: (values) => {
+            setUserInfo(values)
+            history.push('/payment')
+        }
+        
     })
 
 
