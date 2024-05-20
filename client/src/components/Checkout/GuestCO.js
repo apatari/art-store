@@ -20,42 +20,90 @@ export default function GuestCO({ setUserInfo }) {
         zip: yup.number().required('Must provide a zip code')
     })
 
+    const formik = useFormik({
+        initialValues: {
+            email: "",
+            address: "",
+            address2: "",
+            city: "",
+            state: "",
+            zip: ""
+        },
+        validationSchema: formSchema,
+        validateOnChange: false,
+        validateOnBlur: false,
+        onSubmit: (values) => console.log(values)
+    })
+
 
 
     return (
         <div className="my-3 mx-5 p-3 bg-light rounded">
-            <Form>
+            <Form onSubmit={formik.handleSubmit}>
                 <Row className="mb-3" >
-                    <Form.Group as={Col} controlId="formGridEmail" md={6} >
+                    <Form.Group as={Col}  md={6} >
                     <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
+                    <Form.Control 
+                        type="email" 
+                        placeholder="Enter email"
+                        id="email"
+                        name="email"
+                        value={formik.values.email}
+                        onChange={formik.handleChange} />
                     </Form.Group>   
                 </Row>
 
-                <Form.Group className="mb-3" controlId="formGridAddress1">
+                <Form.Group className="mb-3" >
                     <Form.Label>Address</Form.Label>
-                    <Form.Control placeholder="1234 Main St" />
+                    <Form.Control 
+                        type="text"
+                        placeholder="1234 Main St"
+                        id="address"
+                        name="address"
+                        value={formik.values.address}
+                        onChange={formik.handleChange} />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formGridAddress2">
+                <Form.Group className="mb-3" >
                     <Form.Label>Address 2</Form.Label>
-                    <Form.Control placeholder="Apartment, studio, or floor" />
+                    <Form.Control 
+                        type="text"
+                        placeholder="Apartment, studio, or floor"
+                        id="address2"
+                        name="address2"
+                        value={formik.values.address2}
+                        onChange={formik.handleChange}  />
                 </Form.Group>
 
                 <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridCity">
+                    <Form.Group as={Col} >
                     <Form.Label>City</Form.Label>
-                    <Form.Control />
+                    <Form.Control 
+                        type="text"        
+                        id="city"
+                        name="city"
+                        value={formik.values.city}
+                        onChange={formik.handleChange}  />
                     </Form.Group>
 
-                    <Form.Group as={Col} controlId="formGridState">
+                    <Form.Group as={Col} >
                     <Form.Label>State (2 letter abbr.)</Form.Label>
-                    <Form.Control />
+                    <Form.Control 
+                        type="text"        
+                        id="state"
+                        name="state"
+                        value={formik.values.state}
+                        onChange={formik.handleChange}/>
                     </Form.Group>
 
-                    <Form.Group as={Col} controlId="formGridZip">
+                    <Form.Group as={Col} >
                     <Form.Label>Zip</Form.Label>
-                    <Form.Control />
+                    <Form.Control 
+                        type="string"        
+                        id="zip"
+                        name="zip"
+                        value={formik.values.zip}
+                        onChange={formik.handleChange}/>
                     </Form.Group>
                 </Row>
 
