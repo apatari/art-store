@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Row, Col, Button, Form } from "react-bootstrap";
 import CheckoutItemsList from "./CheckoutItemsList";
+import { CartContext } from "../App";
 
 export default function UserOrGuest({ pieces }) {
+
+    const [cart] = useContext(CartContext)
+
+    const cartIsEmpty = pieces.filter(piece => cart.includes(piece.id)).length < 1
+
+
     return (
         <div className="my-3 mx-5 p-3 bg-light rounded">
             <div>
@@ -39,7 +46,7 @@ export default function UserOrGuest({ pieces }) {
                             <Form.Control type="password" placeholder="Password" />
                         </Form.Group>
                         
-                        <Button variant="primary" type="submit">
+                        <Button variant="primary" type="submit" disabled={cartIsEmpty}>
                             Log in
                         </Button>
                     </Form>
@@ -48,7 +55,7 @@ export default function UserOrGuest({ pieces }) {
                 <Col className="border-start d-flex">
                     <div className="mx-auto">
 
-                        <Button size="lg" className="my-5" href="/checkout/guest"> Continue as a guest</Button>
+                        <Button size="lg" className="my-5" href="/checkout/guest" disabled={cartIsEmpty}> Continue as a guest</Button>
                     </div>
                 </Col>
             </Row>
