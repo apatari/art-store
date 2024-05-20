@@ -21,6 +21,7 @@ export default function UserOrGuest({ pieces }) {
             </div>
 
             <div className="my-4 mx-4">
+                {cartIsEmpty && <p className="fs-4 ms-4 text-info" >Shopping cart is currently empty. Add items to enable checkout.</p>}
                 <CheckoutItemsList pieces={pieces} />
             </div>
 
