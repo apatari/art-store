@@ -43,6 +43,7 @@ export default function GuestCO({ setUserInfo }) {
 
     return (
         <div className="my-3 mx-5 p-3 bg-light rounded">
+            <h3 className="">Shipping Information</h3>
             <Form onSubmit={formik.handleSubmit}>
                 <Row className="mb-3" >
                     <Form.Group as={Col}  md={6} >
