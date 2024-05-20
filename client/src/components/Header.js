@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Nav, Container, Navbar } from "react-bootstrap"
+import { Nav, Container, Navbar, Button } from "react-bootstrap"
 import "./header.css"
 
 import CartButton from "./CartComps/CartButton";
@@ -17,6 +17,10 @@ function Header({ pieces }) {
     const handleOpen = () => setShow(true)
 
     const cartPieces = pieces.filter(piece => cart.includes(piece.id))
+
+    const cartHideURLs = ['/payment', '/checkout/guest']
+
+    const showCart = !(cartHideURLs.includes(window.location.pathname))
 
     return (
         <div>
@@ -38,14 +42,14 @@ function Header({ pieces }) {
                     </Navbar.Collapse>
                     
 
-                    <CartButton handleOpen={handleOpen}  />
+                    {showCart && <CartButton handleOpen={handleOpen}  />}
                     
                     
                 </Container>
             </Navbar>
 
             {/* The cart view is an off canvas element that appears once the cart button is clicked */}
-            <CartView show={show} handleClose={handleClose} setCart={setCart} cartPieces={cartPieces} />
+            {showCart && <CartView show={show} handleClose={handleClose} setCart={setCart} cartPieces={cartPieces} />}
             
 
         </div>
