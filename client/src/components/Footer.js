@@ -4,7 +4,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 function Footer() {
     return (
-        <div className="bg-dark p-3 text-light d-flex" >
+        <div className="bg-dark p-3 text-light d-flex mt-auto" >
             <Col lg={2}></Col>
             <Col className="m-2" lg={6}>
                 <Row >

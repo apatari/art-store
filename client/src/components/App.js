@@ -78,7 +78,7 @@ function App() {
           </Route>
 
           <Route exact path='/payment'>
-            <Payment userInfo={userInfo}/>
+            <Payment userInfo={userInfo} pieces={pieces}/>
           </Route>
 
         </Switch>
