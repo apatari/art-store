@@ -46,7 +46,7 @@ export default function Payment({userInfo, pieces}) {
     return (
         <div className="my-3 mx-5 p-3 bg-light rounded">
             <h3 className="my-2">Total price: {totalPrice}</h3>
-            <h3 className="my-2">Pieces: </h3><ul>{cartPieces.map(piece => <li className="fs-4">{piece.name}</li>)}</ul>
+            <h3 className="my-2">Pieces: </h3><ul>{cartPieces.map(piece => <li key={piece.id} className="fs-4">{piece.name}</li>)}</ul>
             <h3 className="mb-4">Please enter payment information</h3>
             {clientSecret && (
             <Elements options={options} stripe={stripePromise}>
