@@ -142,7 +142,7 @@ class CheckSession(Resource):
 class CheckCart(Resource):
     def get(self):
         if 'cart' in session:
-            
+            print("cart: ",session['cart'])
             res = session['cart']
             return res, 200
             # return {"items": len(session['cart'])}, 200
@@ -281,7 +281,7 @@ def webhook():
       payment_intent = event['data']['object']
       # print is placeholder. TODO - create a record in transactions database
       print("Webhook working!", payment_intent['amount'], payment_intent['metadata'])
-      # TODO - clear the cart, update db, remove payment intent from session
+      
     # ... handle other event types
     else:
       print('Unhandled event type {}'.format(event['type']))

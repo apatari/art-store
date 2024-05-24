@@ -57,8 +57,6 @@ function Checkout() {
     if (piece){
     return (
         <div>
-            
-           
          
             <div className="m-3" >
                 <Row  className="m-4  bg-light rounded p-3" >
