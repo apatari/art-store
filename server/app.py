@@ -256,6 +256,8 @@ def create_payment():
         return jsonify(error=str(e)), 403  
 
 
+# To start ngrok tunneler in terminal:
+# ngrok http --domain=tough-sloth-improved.ngrok-free.app 5555
 @app.route('/webhooks', methods=['POST'])
 def webhook():
     
@@ -278,7 +280,7 @@ def webhook():
     if event['type'] == 'payment_intent.succeeded':
       payment_intent = event['data']['object']
       # print is placeholder. TODO - create a record in transactions database
-      print(payment_intent)
+      print("Webhook working!", payment_intent['amount'], payment_intent['email'])
       # TODO - clear the cart, update db, remove payment intent from session
     # ... handle other event types
     else:
