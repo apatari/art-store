@@ -235,7 +235,8 @@ def calculate_order_amount():
 def create_payment():
     try:
         data = json.loads(request.data)
-        print(data)
+        
+        # TODO - check if there is already a payment intent in session, then update with new info if it is
         
         # Create a PaymentIntent with the order amount and currency
         intent = stripe.PaymentIntent.create(
@@ -278,6 +279,7 @@ def webhook():
       payment_intent = event['data']['object']
       # print is placeholder. TODO - create a record in transactions database
       print(payment_intent)
+      # TODO - clear the cart, update db, remove payment intent from session
     # ... handle other event types
     else:
       print('Unhandled event type {}'.format(event['type']))
