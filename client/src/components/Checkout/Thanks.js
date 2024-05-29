@@ -10,7 +10,7 @@ export default function Thanks() {
         })
         .then(res => res.json())
         .then(data => setCart(data))
-    })
+    }, [setCart])
 
     return (
         // remove items from cart, remove payment intent from session
