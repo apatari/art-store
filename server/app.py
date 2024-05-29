@@ -228,22 +228,32 @@ class Image(Resource):
 stripe.api_key = stripe_api_key
 
 # placeholder fn. TODO - check db for item price
-def calculate_order_amount():
-    return 1000
+def calculate_order_amount(pieceArray):
+    res = 0
+    for pieceId in pieceArray:
+        item = Piece.query.filter_by(id=pieceId).first()
+
+        if not item:
+            raise ValueError("Piece ID not found in database")
+        
+        res += item.price
+    print("final: ",res)
+    # print(type(res))
+    return int(res) * 100
 
 @app.route('/api/create-payment-intent', methods=['POST'])
 def create_payment():
     try:
         data = json.loads(request.data)
         userInfo = data['userInfo']
-        print("User Info: ", userInfo)
+        # print("User Info: ", userInfo)
         
         # TODO - check if there is already a payment intent in session, then update with new info if it is
         
         # Create a PaymentIntent with the order amount and currency
         intent = stripe.PaymentIntent.create(
             #use data['items'] as the argument below once todo above is done
-            amount=calculate_order_amount(),
+            amount=calculate_order_amount(data['cart']),
             metadata={"email": userInfo['email']},
             currency='usd',
             # In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
@@ -255,6 +265,7 @@ def create_payment():
             'clientSecret': intent['client_secret']
         })
     except Exception as e:
+        print(e)
         return jsonify(error=str(e)), 403  
 
 
