@@ -235,6 +235,8 @@ def calculate_order_amount():
 def create_payment():
     try:
         data = json.loads(request.data)
+        userInfo = data['userInfo']
+        print("User Info: ", userInfo)
         
         # TODO - check if there is already a payment intent in session, then update with new info if it is
         
@@ -242,7 +244,7 @@ def create_payment():
         intent = stripe.PaymentIntent.create(
             #use data['items'] as the argument below once todo above is done
             amount=calculate_order_amount(),
-            metadata={"email": data['userInfo']['email']},
+            metadata={"email": userInfo['email']},
             currency='usd',
             # In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
             automatic_payment_methods={

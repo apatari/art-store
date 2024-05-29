@@ -26,12 +26,16 @@ function App() {
   const [userInfo, setUserInfo] = useState({})
 
   useEffect(() => {
-    fetch('/api/cart')
-  .then(res => res.json())
-  .then(data => {
+    if (window.location.pathname !== '/thanks') {
+      console.log('fetching cart from app level')
+      fetch('/api/cart')
+      .then(res => res.json())
+      .then(data => {
+        
+        setCart(data)
+      })
+    }
     
-    setCart(data)
-  })
   }, [])
 
   const [pieces, setPieces] = useState([])

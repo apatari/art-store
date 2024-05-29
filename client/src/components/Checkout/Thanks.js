@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { CartContext } from "../App";
 
 export default function Thanks() {
-    const [, setCart] = useContext(CartContext)
+    const [cart, setCart] = useContext(CartContext)
 
     useEffect(() => {
         fetch('/api/cart', {
@@ -10,7 +10,9 @@ export default function Thanks() {
         })
         .then(res => res.json())
         .then(data => setCart(data))
-    }, [setCart])
+    }, [])
+    
+
 
     return (
         // remove items from cart, remove payment intent from session
