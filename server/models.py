@@ -49,7 +49,8 @@ class Order(db.Model, SerializerMixin):
     __tablename__ = 'orders'
 
     id = db.Column(db.Integer, primary_key=True)
-    created_on = db.Column(db.DateTime, server_default=func.now())
+    created_on = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    updated_on = db.Column(db.DateTime(timezone=True), onupdate=func.now())
     customer_email = db.Column(db.String)
     # all prices in cents of us dollar
     price_total = db.Column(db.Integer, nullable=False)
