@@ -14,7 +14,7 @@ import stripe
 # Local imports
 from config import app, db, api, stripe_api_key, stripe_endpoint_secret
 # Add your model imports
-from models import Seller, Piece
+from models import Seller, Piece, Order
 
 #import routes from separate files
 import routes.stripeRoutes

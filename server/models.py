@@ -2,6 +2,7 @@ from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.sql import func
 import validators
 
 from config import db, bcrypt
@@ -43,6 +44,16 @@ class Seller(db.Model, SerializerMixin):
     def __repr__(self):
         return f'Seller {self.username}, ID: {self.id}'
     
+
+class Order(db.Model, SerializerMixin):
+    __tablename__ = 'orders'
+
+    id = db.Column(db.Integer, primary_key=True)
+    created_on = db.Column(db.DateTime, server_default=func.now())
+    customer_email = db.Column(db.String)
+    # all prices in cents of us dollar
+    price_total = db.Column(db.Integer, nullable=False)
+
 
 class Piece(db.Model, SerializerMixin):
     __tablename__ = 'pieces'
