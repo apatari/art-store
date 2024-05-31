@@ -25,7 +25,10 @@ export default function Payment({userInfo, pieces}) {
             body: JSON.stringify({ "cart": cart, "userInfo": userInfo }),
         })
             .then((res) => res.json())
-            .then((data) => setClientSecret(data.clientSecret))
+            .then((data) => {
+              console.log(data)
+              setClientSecret(data.clientSecret)
+            })
 
     }, [cart, userInfo])
 
