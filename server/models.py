@@ -55,6 +55,13 @@ class Order(db.Model, SerializerMixin):
     # all prices in cents of us dollar
     price_total = db.Column(db.Integer, nullable=False)
 
+    pieces = db.relationship('Piece', back_populates='order')
+
+    serialize_rules = ('-pieces.order',)
+
+    def __repr__(self):
+        return f'Order {self.id}, price: ${self.price_total}, piece(s): {self.pieces}'
+
 
 class Piece(db.Model, SerializerMixin):
     __tablename__ = 'pieces'
@@ -64,6 +71,11 @@ class Piece(db.Model, SerializerMixin):
     description = db.Column(db.String)
     image_url = db.Column(db.String)
     price = db.Column(db.Integer, nullable=False)
+    order_id = db.Column(db.Integer, db.ForeignKey('orders.id'))
+
+    order = db.relationship('Order', back_populates='pieces')
+
+    serialize_rules = ('-order.pieces',)
 
 
     @validates('name')
