@@ -18,6 +18,7 @@ validators = "*"
 flask-mail = "*"
 stripe = "*"
 python-dotenv = "*"
+bson = "*"
 
 [requires]
 python_full_version = "3.8.13"

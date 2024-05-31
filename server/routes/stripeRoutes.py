@@ -8,11 +8,12 @@ from flask import request, jsonify
 
 # stripe
 import stripe
+# from bson.objectid import ObjectId
 
 # Local imports
-from config import app, stripe_api_key, stripe_endpoint_secret
+from config import app,db, stripe_api_key, stripe_endpoint_secret
 # Add your model imports
-from models import Seller, Piece
+from models import Seller, Piece, Order, Selection
 
 
 # stripe routes
@@ -36,21 +37,34 @@ def create_payment():
     try:
         data = json.loads(request.data)
         userInfo = data['userInfo']
+        calculatedAmount = calculate_order_amount(data['cart'])
         # print("User Info: ", userInfo)
         
         # TODO - check if there is already a payment intent in session, then update with new info if it is
+
+        
+        new_order = Order(
+            customer_email = userInfo['email'],
+            price_total = calculatedAmount
+        )
+        db.session.add(new_order)
+        db.session.commit()
         
         # Create a PaymentIntent with the order amount and currency
         intent = stripe.PaymentIntent.create(
             #use data['items'] as the argument below once todo above is done
-            amount=calculate_order_amount(data['cart']),
-            metadata={"email": userInfo['email']},
+            amount=calculatedAmount,
+            metadata={"order_id": new_order.id},
             currency='usd',
             # In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
             automatic_payment_methods={
                 'enabled': True,
             },
         )
+
+        new_order.payment_intent = intent['id']
+        db.session.commit()
+        
         return jsonify({
             'clientSecret': intent['client_secret']
         })
