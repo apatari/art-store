@@ -58,7 +58,8 @@ class PieceIndex(Resource):
 
     def get(self):
 
-        pieces = [piece.to_dict() for piece in Piece.query.all()]
+        #currently set to only render unsold pieces
+        pieces = [piece.to_dict() for piece in Piece.query.filter_by(sold=False).all()]
 
         return pieces, 200
     
