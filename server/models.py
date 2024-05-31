@@ -52,12 +52,16 @@ class Order(db.Model, SerializerMixin):
     created_on = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_on = db.Column(db.DateTime(timezone=True), onupdate=func.now())
     customer_email = db.Column(db.String)
+    payment_intent = db.Column(db.String)
     # all prices in cents of us dollar
     price_total = db.Column(db.Integer, nullable=False)
 
     pieces = db.relationship('Piece', back_populates='order')
 
     serialize_rules = ('-pieces.order',)
+
+    # TODO - add validations for orders?  Not sure yet what best way to handle 
+    # database validation errors is in payment intent flow.
 
     def __repr__(self):
         return f'Order {self.id}, price: {self.price_total}, piece(s): {self.pieces}'

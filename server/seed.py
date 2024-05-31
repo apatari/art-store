@@ -37,8 +37,8 @@ if __name__ == '__main__':
         db.session.commit()
 
         orders = [
-            Order(customer_email="bob@test.com", price_total=4500),
-            Order(customer_email="art@test.com", price_total=5500),
+            Order(customer_email="bob@test.com", price_total=4500, payment_intent="pi_example"),
+            Order(customer_email="art@test.com", price_total=5500, payment_intent="pi_example2"),
         ]
 
         for order in orders:
