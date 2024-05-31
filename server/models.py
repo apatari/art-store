@@ -56,9 +56,13 @@ class Order(db.Model, SerializerMixin):
     # all prices in cents of us dollar
     price_total = db.Column(db.Integer, nullable=False)
 
-    pieces = db.relationship('Piece', back_populates='order')
+    selections = db.relationship('Selection', back_populates='order', cascade='all')
+    pieces = association_proxy('selections', 'piece',
+                               creator = lambda piece_obj: Selection(piece=piece_obj))
 
-    serialize_rules = ('-pieces.order',)
+    serialize_rules = ('-selections.order',)
+
+    
 
     # TODO - add validations for orders?  Not sure yet what best way to handle 
     # database validation errors is in payment intent flow.
@@ -75,34 +79,37 @@ class Piece(db.Model, SerializerMixin):
     description = db.Column(db.String)
     image_url = db.Column(db.String)
     price = db.Column(db.Integer, nullable=False)
-    order_id = db.Column(db.Integer, db.ForeignKey('orders.id'))
+    sold = db.Column(db.Boolean, default=False, nullable=False)
 
-    order = db.relationship('Order', back_populates='pieces')
+    selections = db.relationship('Selection', back_populates='piece', cascade='all')
+    orders = association_proxy('selections', 'order',
+                               creator = lambda order_obj: Selection(order=order_obj))
 
-    serialize_rules = ('-order.pieces',)
-
+    serialize_rules = ('-selections.piece',)
 
     @validates('name')
     def validate_name(self, key, name):
         if not name or not type(name) == str or not 0 < len(name) <= 30:
             raise ValueError("Name must be 1-30 characters")
-        return name
-    
-    #turned off validation for now, it wasn't working with my simple image serving,
-    #Plus might be redundant with the url handled independently
-
-    # @validates('image_url')
-    # def validate_image(self, key, image):
-    #     if validators.url(image):
-    #         return image
-    #     return 'https://placehold.co/400x500'
-
-    
-    # #maybe add the placeholder image as part of the front end
-    
+        return name  
 
     @validates('price')
     def validate_price(self, key, price):
         if not type(price) == int or price <= 0:
             raise ValueError("Price must be an integer greater than zero")
         return price
+    
+class Selection(db.Model, SerializerMixin):
+    __tablename__ = 'selections'
+
+    id = db.Column(db.Integer, primary_key=True)
+    order_id = db.Column(db.Integer, db.ForeignKey('orders.id'))
+    piece_id = db.Column(db.Integer, db.ForeignKey('pieces.id'))
+
+    order = db.relationship('Order', back_populates='selections')
+    piece = db.relationship('Piece', back_populates='selections')
+
+    serialize_rules = ('-order.selections', '-piece.selections')
+
+    def __repr__(self):
+        return f'Selection {self.id}, order: {self.order}, piece: {self.piece}'
