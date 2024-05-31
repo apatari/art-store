@@ -60,7 +60,7 @@ class Order(db.Model, SerializerMixin):
     serialize_rules = ('-pieces.order',)
 
     def __repr__(self):
-        return f'Order {self.id}, price: ${self.price_total}, piece(s): {self.pieces}'
+        return f'Order {self.id}, price: {self.price_total}, piece(s): {self.pieces}'
 
 
 class Piece(db.Model, SerializerMixin):
