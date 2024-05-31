@@ -42,7 +42,7 @@ def create_payment():
         
         # TODO - check if there is already a payment intent in session, then update with new info if it is
 
-        
+        #create new order
         new_order = Order(
             customer_email = userInfo['email'],
             price_total = calculatedAmount
@@ -54,6 +54,7 @@ def create_payment():
         intent = stripe.PaymentIntent.create(
             #use data['items'] as the argument below once todo above is done
             amount=calculatedAmount,
+            #add the new order's id as metadata
             metadata={"order_id": new_order.id},
             currency='usd',
             # In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
@@ -62,9 +63,10 @@ def create_payment():
             },
         )
 
+        # add payment intent id to new order
         new_order.payment_intent = intent['id']
         db.session.commit()
-        
+
         return jsonify({
             'clientSecret': intent['client_secret']
         })
@@ -99,6 +101,13 @@ def webhook():
       # print is placeholder. TODO - create a record in transactions database
       # add the payment intent id to the order record in db
       print("Webhook working!", payment_intent['amount'], payment_intent['metadata'])
+
+      # update order to completed
+      order_id = payment_intent['metadata']['order_id']
+      order = Order.query.filter_by(id=order_id).first()
+      order.completed = True
+      db.session.commit()
+
       
     # ... handle other event types
     else:
