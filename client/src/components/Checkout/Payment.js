@@ -16,6 +16,7 @@ export default function Payment({userInfo, pieces}) {
     const [cart] = useContext(CartContext)
 
     const [clientSecret, setClientSecret] = useState("")
+    
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
@@ -26,7 +27,6 @@ export default function Payment({userInfo, pieces}) {
         })
             .then((res) => res.json())
             .then((data) => {
-              console.log(data)
               setClientSecret(data.clientSecret)
             })
 

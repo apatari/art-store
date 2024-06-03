@@ -68,8 +68,7 @@ def create_payment():
         db.session.commit()
 
         return jsonify({
-            'clientSecret': intent['client_secret'],
-            'order': new_order.id
+            'clientSecret': intent['client_secret']
         })
     except Exception as e:
         print(e)

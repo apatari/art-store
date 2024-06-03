@@ -203,7 +203,19 @@ class CheckCart(Resource):
         #     return session['cart'], 200
 
             
+class ThanksByID(Resource):
 
+    def get(self, pi_id):
+
+        order = Order.query.filter_by(payment_intent=pi_id).first()
+
+        if order:
+            if order.to_dict()['completed'] == True:
+                return order.to_dict(), 200
+            else:
+                return {"error": "Order not complete"}, 200
+        else:
+            return {"error": "Order not found"}, 404
         
 class UploadFile(Resource):
 
@@ -238,6 +250,7 @@ api.add_resource(CheckSession, '/api/check_session')
 api.add_resource(UploadFile, '/api/upload')
 api.add_resource(Image, "/api/pics/<string:name>")
 api.add_resource(CheckCart, "/api/cart")
+api.add_resource(ThanksByID, "/api/thanks/<string:pi_id>")
 
 # @app.route('/')
 # def index():
