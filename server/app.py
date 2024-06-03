@@ -213,7 +213,7 @@ class ThanksByID(Resource):
             if order.to_dict()['completed'] == True:
                 return order.to_dict(), 200
             else:
-                return {"error": "Order not complete"}, 200
+                return None, 200
         else:
             return {"error": "Order not found"}, 404
         
