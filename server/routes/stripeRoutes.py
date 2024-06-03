@@ -49,6 +49,11 @@ def create_payment():
         )
         db.session.add(new_order)
         db.session.commit()
+
+        for item_id in data['cart']:
+            new_selection = Selection(order_id=new_order.id, piece_id=item_id)
+            db.session.add(new_selection)
+        db.session.commit()
         
         # Create a PaymentIntent with the order amount and currency
         intent = stripe.PaymentIntent.create(
@@ -97,16 +102,23 @@ def webhook():
 
     # Handle the event
     if event['type'] == 'payment_intent.succeeded':
-      payment_intent = event['data']['object']
-      # print is placeholder. TODO - create a record in transactions database
-      # add the payment intent id to the order record in db
-      print("Webhook working!", payment_intent['amount'], payment_intent['metadata'])
+        payment_intent = event['data']['object']
+        # print is placeholder. TODO - create a record in transactions database
+        # add the payment intent id to the order record in db
+        print("Webhook working!", payment_intent['amount'], payment_intent['metadata'])
 
-      # update order to completed
-      order_id = payment_intent['metadata']['order_id']
-      order = Order.query.filter_by(id=order_id).first()
-      order.completed = True
-      db.session.commit()
+        # update order to completed
+        order_id = payment_intent['metadata']['order_id']
+        order = Order.query.filter_by(id=order_id).first()
+        order.completed = True
+
+        # change all pieces to be sold in db
+        pieces = order.pieces
+        for piece in pieces:
+            piece.sold = True
+            db.session.add(piece)
+        
+        db.session.commit()
 
       
     # ... handle other event types

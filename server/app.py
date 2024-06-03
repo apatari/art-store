@@ -211,6 +211,7 @@ class ThanksByID(Resource):
 
         if order:
             if order.to_dict()['completed'] == True:
+
                 return order.to_dict(), 200
             else:
                 return None, 200
