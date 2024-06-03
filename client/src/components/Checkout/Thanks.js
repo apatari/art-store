@@ -6,6 +6,7 @@ export default function Thanks() {
     const [cart, setCart] = useContext(CartContext)
 
     const [order, setOrder] = useState(null)
+    const [pieces, setPieces] = useState(null)
 
     const queryString = window.location.search
     const urlParams = new URLSearchParams(queryString)
@@ -23,7 +24,10 @@ export default function Thanks() {
     useEffect(() => {
         fetch(`/api/thanks/${pi_id}`)
         .then(res => res.json())
-        .then(data => setOrder(data))
+        .then(data => {
+            setOrder(data.order)
+            setPieces(data.pieces)
+        })
     }, [])
     
 
@@ -36,6 +40,14 @@ export default function Thanks() {
                      <p> {order.customer_email}</p>
                      <p> {order.price_total}</p>
                      <p> {order.created_on}</p>
+                     {pieces.map(piece => {
+                        return (
+                            <div>
+                                <p>{piece.name}</p>
+                                <p>{piece.price}</p>
+                            </div>
+                        )
+                     })}
                 </div>}
         </div>
     )

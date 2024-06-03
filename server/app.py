@@ -212,7 +212,10 @@ class ThanksByID(Resource):
         if order:
             if order.to_dict()['completed'] == True:
 
-                return order.to_dict(), 200
+                pieces = [piece.to_dict() for piece in order.pieces]
+                response_body = {"order": order.to_dict(), "pieces": pieces}
+
+                return response_body, 200
             else:
                 return None, 200
         else:

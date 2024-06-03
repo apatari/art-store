@@ -61,7 +61,7 @@ class Order(db.Model, SerializerMixin):
     pieces = association_proxy('selections', 'piece',
                                creator = lambda piece_obj: Selection(piece=piece_obj))
 
-    serialize_rules = ('-selections.order',)
+    serialize_rules = ('-selections',)
 
     
 
