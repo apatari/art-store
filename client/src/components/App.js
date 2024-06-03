@@ -27,7 +27,7 @@ function App() {
 
   useEffect(() => {
     if (window.location.pathname !== '/thanks') {
-      console.log('fetching cart from app level')
+      
       fetch('/api/cart')
       .then(res => res.json())
       .then(data => {
