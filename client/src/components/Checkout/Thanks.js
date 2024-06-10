@@ -25,6 +25,7 @@ export default function Thanks() {
         fetch(`/api/thanks/${pi_id}`)
         .then(res => res.json())
         .then(data => {
+            // console.log("order", data.order, "pieces", data.pieces)
             setOrder(data.order)
             setPieces(data.pieces)
         })
@@ -33,16 +34,22 @@ export default function Thanks() {
 
 
     return (
-        // remove items from cart, remove payment intent from session
-        <div>
+        // remove items from cart, remove payment intent from session once it's there
+        <div  className="my-3 mx-5 p-3 bg-light rounded">
             {order && 
                 <div>
-                     <p> {order.customer_email}</p>
+                    <h2 className="mb-4" >Thank you for your purchase</h2>
+                    <h5 className="ms-3 mb-3" >A reciept email has been sent to: <strong>{order.customer_email}</strong> </h5>
+                    <h5 className="ms-3 mb-3" >Your order number is <strong>{order.id}</strong> </h5>
+                    <h3>Order Details:</h3>
+                     <div >
+
+                     </div>
                      <p> {order.price_total}</p>
                      <p> {order.created_on}</p>
                      {pieces.map(piece => {
                         return (
-                            <div>
+                            <div key={piece.id}>
                                 <p>{piece.name}</p>
                                 <p>{piece.price}</p>
                             </div>
