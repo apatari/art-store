@@ -31,7 +31,7 @@ export default function Thanks() {
         })
     }, [])
     
-
+    const orderDate = (order)? new Date(Date.parse(order.created_on)):0
 
     return (
         // remove items from cart, remove payment intent from session once it's there
@@ -42,19 +42,22 @@ export default function Thanks() {
                     <h5 className="ms-3 mb-3" >A reciept email has been sent to: <strong>{order.customer_email}</strong> </h5>
                     <h5 className="ms-3 mb-3" >Your order number is <strong>{order.id}</strong> </h5>
                     <h3>Order Details:</h3>
-                     <div >
+                     <div className="ms-3 fs-5">
 
-                     </div>
-                     <p> {order.price_total}</p>
-                     <p> {order.created_on}</p>
+                     <p> Price total: <strong>${order.price_total / 100}</strong> </p>
+                     <p> Shipping address: <strong>In progress</strong> </p>
+                     <p> Order Date: <strong> {orderDate.toLocaleDateString()}</strong></p>
                      {pieces.map(piece => {
-                        return (
-                            <div key={piece.id}>
+                         return (
+                             <div key={piece.id}>
                                 <p>{piece.name}</p>
                                 <p>{piece.price}</p>
                             </div>
                         )
-                     })}
+                    })}
+                    </div>
+
+
                 </div>}
         </div>
     )
