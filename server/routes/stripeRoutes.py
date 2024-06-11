@@ -43,10 +43,19 @@ def create_payment():
         # TODO - check if there is already a payment intent in session, then update with new info if it is
 
         #create new order
+        print("User Info: ", userInfo)
         new_order = Order(
             customer_email = userInfo['email'],
-            price_total = calculatedAmount
+            price_total = calculatedAmount,
+            address=userInfo['address'],
+            address2=None,
+            city=userInfo['city'],
+            state=userInfo['state'],
+            zip=userInfo['zip']
         )
+        if userInfo['address2'] != "":
+            new_order.address2=userInfo['address2']
+            
         db.session.add(new_order)
         db.session.commit()
 
