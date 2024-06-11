@@ -52,6 +52,11 @@ class Order(db.Model, SerializerMixin):
     created_on = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_on = db.Column(db.DateTime(timezone=True), onupdate=func.now())
     customer_email = db.Column(db.String)
+    address = db.Column(db.String)
+    address2 = db.Column(db.String)
+    city = db.Column(db.String)
+    state = db.Column(db.String)
+    zip = db.Column(db.String)
     payment_intent = db.Column(db.String)
     completed = db.Column(db.Boolean, default=False, nullable=False )
     # all prices in cents of us dollar
