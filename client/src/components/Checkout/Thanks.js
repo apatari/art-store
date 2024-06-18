@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Row, Col } from "react-bootstrap";
 import { CartContext } from "../App";
 
 
@@ -58,14 +59,18 @@ export default function Thanks() {
 
                      
                      <p> Order Date: <strong> {orderDate.toLocaleDateString()}</strong></p>
+                     <p>Pieces:</p>
+
+                     <div className="ms-3">
+
                      {pieces.map(piece => {
                          return (
-                             <div key={piece.id}>
-                                <p>{piece.name}</p>
-                                <p>{piece.price}</p>
-                            </div>
+                             <Row className="d-flex" key={piece.id} sm={5}>
+                                <Col><strong>{piece.name}</strong> </Col>
+                                <Col className=""><strong>{piece.price}</strong> </Col>
+                            </Row>
                         )
-                    })}
+                    })}</div>
                     </div>
 
 
