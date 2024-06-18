@@ -51,7 +51,7 @@ export default function Thanks() {
                      <p> Shipping address:    </p>
                      <div className="ms-3 mb-4">
                         <div><strong>{order.address},</strong></div>
-                        {order.address2 ?<div><strong> order.address2 + ', '</strong></div> : ""}
+                        {order.address2 ?<div><strong> {order.address2},</strong></div> : ""}
                         <div><strong>{order.city} {order.state}, {order.zip}</strong></div>
                      </div>
                      
