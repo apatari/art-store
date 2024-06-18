@@ -48,7 +48,7 @@ export default function Thanks() {
                      <div className="ms-3 fs-5">
 
                      <p> Price total: <strong>${order.price_total / 100}</strong> </p>
-                     <p> Shipping address: <strong>In progress</strong> </p>
+                     <p> Shipping address: <strong>{order.address}, {order.address2 ? order.address2 + ', ' : ""} {order.city} {order.state}, {order.zip}</strong> </p>
                      <p> Order Date: <strong> {orderDate.toLocaleDateString()}</strong></p>
                      {pieces.map(piece => {
                          return (
