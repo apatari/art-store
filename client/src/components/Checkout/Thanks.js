@@ -43,10 +43,10 @@ export default function Thanks() {
             {order && 
                 <div>
                     <h2 className="mb-4" >Thank you for your purchase</h2>
-                    <h5 className="ms-3 mb-3" >A reciept email has been sent to: <strong>{order.customer_email}</strong> </h5>
-                    <h5 className="ms-3 mb-3" >Your order number is <strong>{order.id}</strong> </h5>
+                    <h5 className="ms-3 mb-3 fs-4" >A reciept email has been sent to: <strong>{order.customer_email}</strong> </h5>
+                    <h5 className="ms-3 mb-3 fs-4" >Your order number is <strong>{order.id}</strong> </h5>
                     <h3>Order Details:</h3>
-                     <div className="ms-3 fs-5">
+                     <div className="ms-3 fs-4">
 
                      <p> Price total: <strong>${order.price_total / 100}</strong> </p>
                      <p> Shipping address:    </p>
