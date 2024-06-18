@@ -26,8 +26,11 @@ export default function Thanks() {
         .then(res => res.json())
         .then(data => {
             // console.log("order", data.order, "pieces", data.pieces)
-            setOrder(data.order)
-            setPieces(data.pieces)
+            if (data.order !== null){
+                setOrder(data.order)
+                setPieces(data.pieces)
+            }
+            
         })
     }, [])
     
