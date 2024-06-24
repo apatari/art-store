@@ -134,7 +134,12 @@ def webhook():
         filename = order.customer_email + str(order.updated_on) 
 
         with open(f'/Users/andypatari/Development/code/post-projects/art-store/server/confirmations/{filename}', 'w') as file:
-            file.write('Testing...')
+            file.write(f"""
+                Sent to: {order.customer_email}
+                Thank you for your purchase!
+                Total price: ${order.price_total/100} 
+            
+            """)
 
       
     # ... handle other event types
