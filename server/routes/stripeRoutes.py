@@ -135,9 +135,9 @@ def webhook():
 
         with open(f'/Users/andypatari/Development/code/post-projects/art-store/server/confirmations/{filename}', 'w') as file:
             file.write(f"""
-                Sent to: {order.customer_email}
-                Thank you for your purchase!
-                Total price: ${order.price_total/100} 
+Sent to: {order.customer_email}
+Thank you for your purchase!
+Total price: ${'{0:.2f}'.format(order.price_total/100)} 
             
             """)
 
