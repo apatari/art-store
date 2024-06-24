@@ -129,6 +129,13 @@ def webhook():
         
         db.session.commit()
 
+        # Create a text file for thank you email while in development
+
+        filename = order.customer_email + str(order.updated_on) 
+
+        with open(f'/Users/andypatari/Development/code/post-projects/art-store/server/confirmations/{filename}', 'w') as file:
+            file.write('Testing...')
+
       
     # ... handle other event types
     else:
