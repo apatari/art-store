@@ -14,6 +14,7 @@ import stripe
 from config import app,db, stripe_api_key, stripe_endpoint_secret
 # Add your model imports
 from models import Seller, Piece, Order, Selection
+from stripeHelpers import makeTextConfirmation
 
 
 # stripe routes
@@ -131,19 +132,21 @@ def webhook():
 
         # Create a text file for thank you email while in development
 
-        filename = order.customer_email + str(order.updated_on) 
+        makeTextConfirmation(order)
 
-        with open(f'/Users/andypatari/Development/code/post-projects/art-store/server/confirmations/{filename}', 'w') as file:
-            file.write(f"""
-Email: {order.customer_email}
-Thank you for your purchase!
-Total price: ${'{0:.2f}'.format(order.price_total/100)} 
-Address:
-    {order.address}
-    {order.address2 or ""}
-    {order.city + ", " + order.state + ", " + order.zip}
+#         filename = order.customer_email + str(order.updated_on) 
+
+#         with open(f'/Users/andypatari/Development/code/post-projects/art-store/server/confirmations/{filename}', 'w') as file:
+#             file.write(f"""
+# Email: {order.customer_email}
+# Thank you for your purchase!
+# Total price: ${'{0:.2f}'.format(order.price_total/100)} 
+# Address:
+#     {order.address}
+#     {order.address2 or ""}
+#     {order.city + ", " + order.state + ", " + order.zip}
             
-            """)
+#             """)
 
       
     # ... handle other event types
