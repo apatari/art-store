@@ -25,7 +25,7 @@ from routes.pieceRoutes import PieceByID, PieceIndex
 from routes.imageRoutes import UploadFile, Image
 from routes.cartRoutes import CheckCart
 from routes.thanksRoutes import ThanksByID
-from routes.orderRoutes import OrderIndex
+from routes.orderRoutes import OrderIndex, OrderByID
 
 
 # Views in separate folders        
@@ -41,6 +41,7 @@ api.add_resource(Image, "/api/pics/<string:name>")
 api.add_resource(CheckCart, "/api/cart")
 api.add_resource(ThanksByID, "/api/thanks/<string:pi_id>")
 api.add_resource(OrderIndex, '/api/orders')
+api.add_resource(OrderByID, '/api/orders/<int:id>')
 
 # @app.route('/')
 # def index():
