@@ -16,6 +16,7 @@ import UserOrGuest from "./Checkout/UserOrGuest";
 import GuestCO from "./Checkout/GuestCO";
 import Payment from "./Checkout/Payment";
 import Thanks from "./Checkout/Thanks";
+import Orders from "./Seller-options/Orders";
 
 
 export const CartContext = createContext([])
@@ -68,6 +69,10 @@ function App() {
 
           <Route exact path="/seller">
             <Seller />
+          </Route>
+
+          <Route exact path="/orders">
+            <Orders />
           </Route>
 
           <Route exact path='/pieces/:piece_id'>
