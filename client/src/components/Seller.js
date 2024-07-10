@@ -6,9 +6,9 @@ import New from "./Seller-options/New";
 import Edit from "./Seller-options/Edit";
 import Delete from "./Seller-options/Delete";
 
-function Seller() {
+function Seller({ user, setUser }) {
 
-    const [user, setUser] = useState(null)
+    
     const history = useHistory()
     const [mode, setMode] = useState("new")
 
@@ -34,6 +34,8 @@ function Seller() {
         .then(r => {
             if (r.ok) {
                 r.json().then(user => setUser(user))
+            } else {
+                setUser(null)
             }
         })
 

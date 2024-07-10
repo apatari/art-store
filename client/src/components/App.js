@@ -23,6 +23,8 @@ export const CartContext = createContext([])
 
 function App() {
 
+  const [user, setUser] = useState(null)
+
   const [cart, setCart] = useState([])
   const [userInfo, setUserInfo] = useState({})
 
@@ -68,11 +70,11 @@ function App() {
           </Route>
 
           <Route exact path="/seller">
-            <Seller />
+            <Seller user={user} setUser={setUser} />
           </Route>
 
           <Route exact path="/orders">
-            <Orders />
+            <Orders user={user} setUser={setUser}/>
           </Route>
 
           <Route exact path='/pieces/:piece_id'>
