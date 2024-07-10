@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import Login from "../Login";
 
 export default function Orders({user, setUser}) {
+
+    const [orders, setOrders] = useState([])
 
     useEffect(() => {
         fetch("/api/check_session")
@@ -16,6 +18,12 @@ export default function Orders({user, setUser}) {
 
     }, [])
 
+    useEffect(() => {
+        fetch('/api/orders')
+        .then(r => r.json())
+        .then(data => setOrders(data))
+    }, [])
+
     if (!user) return (
         <Login setUser={setUser}/>
     )
@@ -23,7 +31,7 @@ export default function Orders({user, setUser}) {
 
     if (user) return (
         <div>
-            Orders
+            {orders && orders.map(order => <p key={order.id} >{order.id}, {order.customer_email}</p>)}
         </div>
     )
 }
